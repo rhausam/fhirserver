@@ -706,9 +706,9 @@ begin
     GHaveCritSect := true;
     GBackgroundTasks := TBackgroundTaskManager.Create;
     GThreadList := TList.Create;
-    IdThread.fsThreadName := SetThreadName;
-    IdThread.fsThreadStatus := SetThreadStatus;
-    IdThread.fsThreadClose := CloseThreadInternal;
+    //IdThread.fsThreadName := SetThreadName;
+    //IdThread.fsThreadStatus := SetThreadStatus;
+    //IdThread.fsThreadClose := CloseThreadInternal;
     GetThreadNameStatusDelegate := GetThreadNameStatus;
   end;
 end;
@@ -719,9 +719,9 @@ var
   p : PTheadRecord;
 begin
   GHaveCritSect := false;
-  IdThread.fsThreadName := nil;
-  IdThread.fsThreadStatus := nil;
-  IdThread.fsThreadClose := nil;
+  //IdThread.fsThreadName := nil;
+  //IdThread.fsThreadStatus := nil;
+  //IdThread.fsThreadClose := nil;
   for i := GThreadList.Count - 1 downto 0 do
   begin
     p := GThreadList[i];

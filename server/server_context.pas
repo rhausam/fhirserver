@@ -34,11 +34,12 @@ interface
 
 uses
   SysUtils, Classes, Generics.Collections,
-  fsl_base, fsl_threads, fsl_utilities, fsl_collections, fsl_logging, fsl_npm_cache,
+  fsl_base, fsl_threads, fsl_utilities, fsl_collections, fsl_logging, //fsl_npm_cache,
   fhir_objects, fhir_factory, fhir_common, fhir_validator, fdb_manager, fhir_uris,
   fhir_indexing,
   indexing, user_manager, storage, utilities, tx_server,
-  subscriptions, session_manager, tag_manager, jwt, server_factory, consent_engine,
+  subscriptions, session_manager, tag_manager, //jwt,
+  server_factory, consent_engine,
   client_cache_manager;
 
 Const
@@ -101,19 +102,19 @@ Type
     FDoAudit: Boolean;
     FSupportSystemHistory: Boolean;
     FValidate: Boolean;
-    FJWTServices: TJWTServices;
+//    FJWTServices: TJWTServices;
     FTaskFolder: String;
     FGlobals: TFHIRServerSettings;
     FServerFactory : TFHIRServerFactory;
     FConsentEngine: TFHIRConsentEngine;
     FClientCacheManager: TClientCacheManager;
     FOnGetNamedContext : TGetNamedContextEvent;
-    FPcm: TFHIRPackageManager;
+    //FPcm: TFHIRPackageManager;
 
     procedure SetUserProvider(const Value: TFHIRUserProvider);
     procedure SetTerminologyServer(const Value: TTerminologyServer);
     procedure SetSubscriptionManager(const Value: TSubscriptionManager);
-    procedure SetJWTServices(const Value: TJWTServices);
+//    procedure SetJWTServices(const Value: TJWTServices);
     function GetFactory: TFHIRFactory;
     procedure SetGlobals(const Value: TFHIRServerSettings);
 
@@ -121,14 +122,14 @@ Type
     procedure SetValidate(const Value: Boolean);
 
     procedure SetClientCacheManager(const Value: TClientCacheManager);
-    procedure SetPcm(const Value: TFHIRPackageManager);
+    //procedure SetPcm(const Value: TFHIRPackageManager);
   public
-    constructor Create(name : String; storage : TFHIRStorageService; serverFactory : TFHIRServerFactory; pcm : TFHIRPackageManager);
+    //constructor Create(name : String; storage : TFHIRStorageService; serverFactory : TFHIRServerFactory; pcm : TFHIRPackageManager);
     destructor Destroy; override;
     Function Link : TFHIRServerContext; overload;
 
     property Name : string read FName;
-    property pcm : TFHIRPackageManager read FPcm;
+    //property pcm : TFHIRPackageManager read FPcm;
     property Globals : TFHIRServerSettings read FGlobals write SetGlobals;
     property DatabaseId: String read FSystemId write FSystemId;
     property QuestionnaireCache: TQuestionnaireCache read FQuestionnaireCache;
@@ -147,7 +148,7 @@ Type
     property ServerFactory : TFHIRServerFactory read FServerFactory;
     property ClientCacheManager: TClientCacheManager read FClientCacheManager write SetClientCacheManager;
 
-    property JWTServices : TJWTServices read FJWTServices write SetJWTServices;
+//    property JWTServices : TJWTServices read FJWTServices write SetJWTServices;
 
     property FormalURLPlain: String read FFormalURLPlain write FFormalURLPlain;
     property FormalURLSecure: String read FFormalURLSecure write FFormalURLSecure;
@@ -372,6 +373,7 @@ begin
   FClientCacheManager.clearCache;
 end;
 
+(*
 constructor TFHIRServerContext.Create(name : String; storage: TFHIRStorageService; serverFactory : TFHIRServerFactory; pcm : TFHIRPackageManager);
 var
   a: String;
@@ -409,14 +411,15 @@ begin
   FTaskFolder := FilePath(['[tmp]', 'fhir-server-tasks']);
   ForceFolder(FTaskFolder);
 end;
+*)
 
 destructor TFHIRServerContext.Destroy;
 begin
-  FPcm.free;
+  //FPcm.free;
   FConsentEngine.Free;
   FGlobals.Free;
   FMaps.Free;
-  FJWTServices.Free;
+//  FJWTServices.Free;
   FNamingSystems.Free;
   FTagManager.Free;
   FSessionManager.CloseAll;
@@ -494,17 +497,19 @@ begin
   FValidate := Value;
 end;
 
-procedure TFHIRServerContext.SetJWTServices(const Value: TJWTServices);
-begin
-  FJWTServices.Free;
-  FJWTServices := Value;
-end;
+//procedure TFHIRServerContext.SetJWTServices(const Value: TJWTServices);
+//begin
+//  FJWTServices.Free;
+//  FJWTServices := Value;
+//end;
 
+(*
 procedure TFHIRServerContext.SetPcm(const Value: TFHIRPackageManager);
 begin
   FPcm.Free;
   FPcm := Value;
 end;
+*)
 
 procedure TFHIRServerContext.SetCacheStatus(status: boolean);
 begin

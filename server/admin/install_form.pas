@@ -35,10 +35,10 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, ExtCtrls,
   StdCtrls, ComCtrls,
-  fsl_base, fsl_utilities, fsl_npm_client,
+  fsl_base, fsl_utilities, //fsl_npm_client,
   fdb_manager,
   server_config, utilities, database_installer,
-  install_log;
+  install_log, console_form;
 
 type
 
@@ -76,20 +76,20 @@ type
     FConnection: TFDBConnection;
     FEndPoint: String;
     FFilename: String;
-    FPackages : TFslList<TFHIRPackageInfo>;
-    FSelectedPackages : TStringList;
+    //FPackages : TFslList<TFHIRPackageInfo>;
+    //FSelectedPackages : TStringList;
     FType: String;
     FVersion: String;
-    function isAutomatic(pi: TFHIRPackageInfo): boolean;
+    //function isAutomatic(pi: TFHIRPackageInfo): boolean;
     function matchesVersion(pi, piv: String): boolean;
     procedure SetConnection(AValue: TFDBConnection);
-    procedure SetPackages(AValue: TFslList<TFHIRPackageInfo>);
-    procedure loadPackages;
+    //procedure SetPackages(AValue: TFslList<TFHIRPackageInfo>);
+    //procedure loadPackages;
     function passesFilter(id : String) : boolean;
     function command : String;
     procedure SetVersion(AValue: String);
   public
-    property Packages : TFslList<TFHIRPackageInfo> read FPackages write SetPackages;
+    //property Packages : TFslList<TFHIRPackageInfo> read FPackages write SetPackages;
     property Connection : TFDBConnection read FConnection write SetConnection;
     property Filename : String read FFilename write FFilename;
     property endpoint : String read FEndPoint write FEndPoint;
@@ -103,11 +103,6 @@ var
 function InstallEndPoint(owner : TComponent; cfg : TFHIRServerConfigFile; epInfo : TFHIRServerConfigSection) : boolean;
 
 implementation
-
-{$R *.lfm}
-
-uses
-  console_form;
 
 function InstallEndPoint(owner : TComponent; cfg : TFHIRServerConfigFile; epInfo : TFHIRServerConfigSection) : boolean;
 var
@@ -127,7 +122,7 @@ begin
       try
         form := TEndpointInstallForm.create(owner);
         try
-          form.Packages := MainConsoleForm.Packages.link;
+          //form.Packages := MainConsoleForm.Packages.link;
           form.Connection := conn.link;
           form.Filename := cfg.filename;
           form.endpoint := epInfo.name;
@@ -155,8 +150,8 @@ end;
 
 procedure TEndpointInstallForm.FormDestroy(Sender: TObject);
 begin
-  FSelectedPackages.Free;
-  FPackages.Free;
+  //FSelectedPackages.Free;
+  //FPackages.Free;
   FConnection.Free;
 end;
 
@@ -184,7 +179,7 @@ end;
 
 procedure TEndpointInstallForm.edtFilterChange(Sender: TObject);
 begin
-  loadPackages;
+  //loadPackages;
 end;
 
 function TEndpointInstallForm.matchesVersion(pi, piv : String):boolean;
@@ -203,6 +198,7 @@ begin
     result := false;
 end;
 
+(*
 function TEndpointInstallForm.isAutomatic(pi : TFHIRPackageInfo):boolean;
 begin
   if pi.id = 'hl7.fhir.core' then
@@ -214,12 +210,13 @@ begin
   else
     result := false;
 end;
+*)
 
 procedure TEndpointInstallForm.FormShow(Sender: TObject);
 begin
-  FSelectedPackages := TStringList.create;
-  FSelectedPackages.Duplicates := dupIgnore;
-  FSelectedPackages.sorted := true;
+  //FSelectedPackages := TStringList.create;
+  //FSelectedPackages.Duplicates := dupIgnore;
+  //FSelectedPackages.sorted := true;
   lblMode.caption := 'Install '+type_+' for version '+version;
   if type_ = 'terminology' then
   begin
@@ -233,7 +230,7 @@ begin
     edtAnonymousRights.Enabled := false;
     lvPackages.items.clear;
     lvPackages.Enabled := false;
-    loadPackages;
+    //loadPackages;
   end
   else if type_ = 'full' then
   begin
@@ -247,7 +244,7 @@ begin
     edtAnonymousRights.Enabled := true;
     lvPackages.items.clear;
     lvPackages.Enabled := true;
-    loadPackages;
+    //loadPackages;
   end
   else
   begin
@@ -267,17 +264,20 @@ end;
 procedure TEndpointInstallForm.lvPackagesItemChecked(Sender: TObject; Item: TListItem);
 begin
   if item.Checked then
-    FSelectedPackages.add(item.caption)
-  else if (FSelectedPackages.IndexOf(item.caption) > -1) then
-    FSelectedPackages.delete(FSelectedPackages.IndexOf(item.caption));
+    //FSelectedPackages.add(item.caption)
+  //else if (FSelectedPackages.IndexOf(item.caption) > -1) then
+  //  FSelectedPackages.delete(FSelectedPackages.IndexOf(item.caption));
 end;
 
+(*
 procedure TEndpointInstallForm.SetPackages(AValue: TFslList<TFHIRPackageInfo>);
 begin
   FPackages.Free;
   FPackages := AValue;
 end;
+*)
 
+(*
 procedure TEndpointInstallForm.loadPackages;
 var
   pi : TFHIRPackageInfo;
@@ -296,6 +296,7 @@ begin
   lvPackages.ViewStyle := vsIcon;
   lvPackages.ViewStyle := vsList;
 end;
+*)
 
 function TEndpointInstallForm.passesFilter(id: String): boolean;
 begin

@@ -34,7 +34,7 @@ Interface
 
 uses
   {$IFDEF WINDOWS} Windows, {$ENDIF}
-  SysUtils, Classes, Inifiles, Generics.Collections, DateUtils,
+  SysUtils, Classes, Inifiles, Generics.Collections, DateUtils, StrUtils,
   fsl_base, fsl_stream, fsl_utilities, fsl_collections, fsl_fpc,
   ftx_loinc_services, ftx_sct_services, ftx_sct_expressions;
 
@@ -764,6 +764,7 @@ var
   iFlag, lang : Byte;
   wc : TWordCache;
   sc : TStemCache;
+  fname : String;
   Function Next(ch : byte) : integer;
   begin
     inc(iCursor);
@@ -777,6 +778,8 @@ begin
   aIndexLength := 0;
   for fi := 0 to DescriptionFiles.Count - 1 do
   begin
+    fname:= RightStr(DescriptionFiles[fi],Length(DescriptionFiles[fi]) - LastDelimiter('\',DescriptionFiles[fi]));
+    Progress(STEP_READ_DESC, 0, 'Read Description Files ' + fname);
     s := LoadFile(DescriptionFiles[fi]);
     iCursor := -1;
     iCursor := Next(13) + 2;
@@ -840,7 +843,7 @@ begin
       inc(OverallCount);
 
       if OverallCount mod UPDATE_FREQ_D = 0 then
-        Progress(STEP_READ_DESC, iCursor / len, 'Read Description Files '+pct(iCursor, len));
+        Progress(STEP_READ_DESC, iCursor / len, 'Read Description Files '  + fname + ' ' + pct(iCursor, len));
     End;
   end;
   Progress(STEP_SORT_DESC, 0, 'Sort Descriptions');
@@ -2168,7 +2171,6 @@ begin
   if (moduleId = '11000172109') // Belgium
   or (moduleId = '554471000005108') // Denmark
   or (moduleId = '45991000052106') // Sweden
-  or (moduleId = '999000041000000102') // UK
   then
     result := True
   else

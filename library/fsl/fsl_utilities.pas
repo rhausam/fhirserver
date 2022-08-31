@@ -11274,7 +11274,7 @@ end;
 function getIanaNameForWindowsTimezone(zone : String; country : String) : String;
 begin
   // source : https://github.com/unicode-org/cldr/blob/master/common/supplemental/windowsZones.xml
-  // Copyright © 1991-2013 Unicode, Inc.
+  // Copyright ï¿½ 1991-2013 Unicode, Inc.
   // version 2020a
   if country = '' then
     country := '001'; // default;

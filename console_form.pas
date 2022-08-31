@@ -4,7 +4,7 @@ unit console_form;
 Copyright (c) 2020+, Health Intersections Pty Ltd (http://www.healthintersections.com.au)
 All rights reserved.
 
-Redistribution and use in source and binary forms, with or without modification,
+Redistribution and use in source and bi, Vcl.Menusnary forms, with or without modification,
 are permitted provided that the following conditions are met:
 
  * Redistributions of source code must retain the above copyright notice, this
@@ -34,22 +34,39 @@ interface
 
 uses
   {$IFDEF WINDOWS}Windows, {$ENDIF}
-  Classes, SysUtils, StrUtils, Forms, Controls, Graphics, Dialogs, ComCtrls,
-  StdCtrls, Registry, Types, ExtCtrls, Menus, ActnList, StdActns, Buttons,
-  DateTimePicker, LvlGraphCtrl, Interfaces, LclIntf, IniFiles, Math, IdTelnet,
+  Classes, SysUtils, StrUtils, Forms, Controls, Graphics, Dialogs,
+  ComCtrls, StdCtrls,
+  Registry, Types, ExtCtrls, Menus, ActnList, StdActns, Buttons, FileCtrl,
+  //DateTimePicker,
+  //LvlGraphCtrl,
+  //Interfaces,
+  //LclIntf,
+  IniFiles,
+  Math,
+  //IdTelnet,
   IdGlobal, fsl_base, fsl_threads, fsl_fpc, fsl_utilities, fsl_logging,
-  fsl_npm_client, fsl_openssl, fdb_odbc_fpc, fdb_manager, fdb_odbc, fsl_npm_cache,
-  fdb_dialects, fdb_odbc_objects, fdb_sqlite3, ftx_sct_combiner,
+  //fsl_np_client,
+  //fsl_openssl,
+  //fdb_odbc_fpc,
+  //fdb_manager, fdb_odbc,
+  //fsl_npm_cache,
+  fdb_dialects,
+  //fdb_odbc_objects,
+  fdb_sqlite3, ftx_sct_combiner,
   fhir_colour_utils,
-  fui_lcl_utilities,
+  //fui_lcl_utilities,
   ftx_sct_services, ftx_sct_importer, ftx_loinc_importer, tx_ndc, tx_rxnorm,
-  tx_unii, fui_lcl_managers, fui_lcl_cache, fcomp_graph, server_config,
-  server_constants, console_managers, frm_about, test_form;
+  tx_unii,
+  //fui_lcl_managers, fui_lcl_cache,
+  fcomp_graph, server_config,
+  server_constants, console_managers, frm_about, System.Actions,
+  System.ImageList, Vcl.ImgList, Vcl.ToolWin; //, test_form;
 
 const
    DEF_PASSWORD = 'AA8FF8CC-81C8-41D7-93BA-26AD5E89A1C1';
 
 type
+  (*
   TConnectionStatus = (csDiconnected, csUsername, csPassword, csConnected, csEnhanced);
 
   { TConnectingThread }
@@ -96,7 +113,7 @@ type
     procedure recordSession(start, length : int64);
     function report : String;
   end;
-
+*)
 
   { TMainConsoleForm }
 
@@ -205,7 +222,6 @@ type
     edtAdminOrganization: TEdit;
     edtAdminSMS: TEdit;
     edtRProxyPort: TEdit;
-    FGraph1: TFGraph;
     FileNewAction: TAction;
     ActionList1: TActionList;
     EditCopy1: TEditCopy;
@@ -428,7 +444,7 @@ type
     prgRxNormImport: TProgressBar;
     prgNDCImport: TProgressBar;
     prgSnomedImport: TProgressBar;
-    dlgFolder: TSelectDirectoryDialog;
+    //dlgFolder: TSelectDirectoryDialog;
     dlgSave: TSaveDialog;
     rbNDCSQLite: TRadioButton;
     rbRXNSQLite: TRadioButton;
@@ -489,7 +505,6 @@ type
     procedure btnCopyConsoleClick(Sender: TObject);
     procedure btnDeleteEditionClick(Sender: TObject);
     procedure btnDestinationClick(Sender: TObject);
-    procedure btnEPAddClick(Sender: TObject);
     procedure btnFetchObjectsClick(Sender: TObject);
     procedure btnFetchObjectsPlusClick(Sender: TObject);
     procedure btnImportNDCClick(Sender: TObject);
@@ -512,7 +527,6 @@ type
     procedure btnStopCombineClick(Sender: TObject);
     procedure btnUMLSStopClick(Sender: TObject);
     procedure btnFetchThreadsClick(Sender: TObject);
-    procedure cbUMLSDriverChange(Sender: TObject);
     procedure cbxEditionChange(Sender: TObject);
     procedure chkCachingChange(Sender: TObject);
     procedure edtCacheTimeChange(Sender: TObject);
@@ -543,7 +557,6 @@ type
     procedure edtWebMaxConnectionsChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure FormResize(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure Image2Click(Sender: TObject);
     procedure Image3Click(Sender: TObject);
@@ -558,38 +571,27 @@ type
     procedure MenuItem4Click(Sender: TObject);
     procedure MenuItem6Click(Sender: TObject);
     procedure MenuItem7Click(Sender: TObject);
-    procedure MenuItem8Click(Sender: TObject);
-    procedure Panel46Click(Sender: TObject);
     procedure pnlProcessNDCClick(Sender: TObject);
     procedure pnlProcessUNIIClick(Sender: TObject);
-    procedure pnlSnomedImportClick(Sender: TObject);
     procedure rbNDCMSSQLClick(Sender: TObject);
-    procedure rbRXNMySQLChange(Sender: TObject);
     procedure rbRXNMySQLClick(Sender: TObject);
-    procedure rbRXNSQLiteClick(Sender: TObject);
     procedure rbUNIISQLiteClick(Sender: TObject);
-    procedure tbConsoleContextPopup(Sender: TObject; MousePos: TPoint; var Handled: Boolean);
-    procedure tbNDCContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
-    procedure tbTerminologiesContextPopup(Sender: TObject; MousePos: TPoint; var Handled: Boolean);
-    procedure tbUniiContextPopup(Sender: TObject; MousePos: TPoint;
-      var Handled: Boolean);
     procedure Timer1Timer(Sender: TObject);
     procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
   private
     FLock : TFslLock;
-    FTelnet: TIdTelnet;
+//    FTelnet: TIdTelnet;
     FConnected : boolean;
     FIncoming : TStringList;
     FThreads : TStringList;
     FServerStatus : String;
     FLines : TStringList;
-    FStatistics : TServerSessionStatistics;
+//    FStatistics : TServerSessionStatistics;
     FLastIncoming : TDateTime;
-    FStatus : TConnectionStatus;
-    FThread : TConnectingThread;
-    FPackageThread : TPackageClientThread;
+//    FStatus : TConnectionStatus;
+//    FThread : TConnectingThread;
+//    FPackageThread : TPackageClientThread;
     FAddress : String;
     FPassword : String;
     FFilter : String;
@@ -599,12 +601,13 @@ type
     FRunning : boolean;
     FLoading : boolean;
 
-    FTxManager : TTxManager;
-    FEPManager : TEndPointManager;
-    FIDManager : TIdentityProviderManager;
-    FPackages : TFslList<TFHIRPackageInfo>;
-    FThreadPackages : TFslList<TFHIRPackageInfo>;
+    //FTxManager : TTxManager;
+    //FEPManager : TEndPointManager;
+    //FIDManager : TIdentityProviderManager;
+    //FPackages : TFslList<TFHIRPackageInfo>;
+    //FThreadPackages : TFslList<TFHIRPackageInfo>;
 
+    (*
     procedure recordSessionLength(start, length : int64);
     procedure DoIncoming(Sender: TIdTelnet; const Buffer: TIdBytes);
     procedure DoConnected(Sender: TObject);
@@ -613,6 +616,7 @@ type
     function passesFilter(line: String) : boolean;
     function handleCommand(line: String) : boolean;
     procedure Connect;
+    *)
     procedure sctCallback(pct: Integer; action: String);
     procedure cmbCallback(pct: Integer; action: String);
     procedure loincCallback(pct: Integer; action: String);
@@ -621,14 +625,18 @@ type
     procedure uniiCallback(sender : TObject; pct : integer; done : boolean; desc : String);
     Procedure SetUpTerminologyPage;
     function getSnomedModule: String;
+    (*
     procedure connectToServer(server : String);
     procedure GetODBCDriversList(list : TStrings);
+    *)
     procedure SetConfigEditable;
     procedure SetConfigReadonly;
+    (*
     procedure EPFocusChange(sender : TObject);
     procedure updateDoco;
-  public
-    property Packages : TFslList<TFHIRPackageInfo> read FPackages;
+    *)
+  //public
+    //property Packages : TFslList<TFHIRPackageInfo> read FPackages;
   end;
 
 var
@@ -636,18 +644,21 @@ var
 
 implementation
 
-{$R *.lfm}
+{$R *.dfm}
 
-uses
-  console_server_form;
+//uses
+//  console_server_form;
 
-{ TPackageClientThread }
+//{ TPackageClientThread }
 
+(*
 function TPackageClientThread.compare(sender: TObject; const left, right: TFHIRPackageInfo): integer;
 begin
   result := StringCompare(left.id, right.id);
 end;
+*)
 
+(*
 procedure TPackageClientThread.Execute;
 var
   client : TFHIRPackageClient;
@@ -668,15 +679,19 @@ begin
     client.Free;
   end;
 end;
+*)
 
-{ TServerSessionStatistics }
+//{ TServerSessionStatistics }
 
+(*
 constructor TServerSessionStatistics.Create;
 begin
   inherited Create;
   FStart := GetTickCount64;
 end;
+*)
 
+(*
 procedure TServerSessionStatistics.recordSession(start, length: int64);
 begin
   inc(FCursor);
@@ -697,7 +712,9 @@ begin
   else if (length <= 48000) then inc(FCounts[8])
   else {if (length <= 100) then} inc(FCounts[9])
 end;
+*)
 
+(*
 function TServerSessionStatistics.report: String;
 var
   i, t, c : integer;
@@ -740,29 +757,37 @@ begin
   result := result + ' 32 - 48: '+inttostr(FCounts[8])+#13#10;
   result := result + ' >48    : '+inttostr(FCounts[9])+#13#10;
 end;
+*)
 
-{ TServerSession }
+//{ TServerSession }
 
+(*
 constructor TServerSession.Create;
 begin
   inherited Create;
   FLog := TStringList.create;
   FLocal := Now;
 end;
+*)
 
+(*
 destructor TServerSession.Destroy;
 begin
   FLog.Free;
   inherited Destroy;
 end;
+*)
 
-{ TConnectingThread }
+//{ TConnectingThread }
 
+(*
 procedure TConnectingThread.Initialise;
 begin
   TimePeriod := 50;
 end;
+*)
 
+(*
 procedure TConnectingThread.Execute;
 begin
   try
@@ -770,30 +795,36 @@ begin
   except
   end;
 end;
+*)
 
 
 { TMainConsoleForm }
 
 procedure TMainConsoleForm.FormCreate(Sender: TObject);
-var
-  s : String;
+//var
+//  s : String;
 begin
   GBackgroundTasks.start;
 
-  s := getAppConfigDir(false);
-  FIni := TIniFile.create(FilePath([s, 'FHIRConsole.ini']));
-  FAddress := FIni.ReadString('console', 'address', 'Localhost');
-  FPassword := FIni.ReadString('console', 'password', DEF_PASSWORD); // this password only works from localhost
-  readFontFromIni(FIni, 'font', mConsole.font);
+  //s := getAppConfigDir(false);
+  //FIni := TIniFile.create(FilePath([s, 'FHIRConsole.ini']));
+  FIni := TIniFile.create(ChangeFileExt(Application.ExeName,'.ini'));
+  //FAddress := FIni.ReadString('console', 'address', 'Localhost');
+  //FPassword := FIni.ReadString('console', 'password', DEF_PASSWORD); // this password only works from localhost
+  //readFontFromIni(FIni, 'font', mConsole.font);
 
+  (*
   FTelnet := TIdTelnet.create(nil);
   FTelnet.Port := 44123;
   FTelnet.ThreadedEvent := true;
   FTelnet.OnConnected := DoConnected;
   FTelnet.onDisconnected := DoDisconnected;
   FTelnet.OnDataAvailable := DoIncoming;
+  *)
 
   setupTerminologyPage;
+
+  (*
   FStatus := csDiconnected;
   FIncoming := TStringList.create;
   FThreads := TStringList.create;;
@@ -833,13 +864,15 @@ begin
 
   edtConfigFile.text := FIni.ReadString('config', 'filename', '');
   edtConfigFileChange(self);
+*)
 
-  pgTerminologies.ActivePage := tbSnomed;
-  Timer1.enabled := true;
+  //pgTerminologies.ActivePage := tbSnomed;
+  //Timer1.enabled := true;
 end;
 
 procedure TMainConsoleForm.FormDestroy(Sender: TObject);
 begin
+(*
   FTxManager.saveStatus;
   FEPManager.saveStatus;
   FIDManager.saveStatus;
@@ -861,17 +894,15 @@ begin
   FLines.Free;
   FStatistics.Free;
   FLock.Free;
+  *)
   FIni.Free;
-end;
-
-procedure TMainConsoleForm.FormResize(Sender: TObject);
-begin
 end;
 
 procedure TMainConsoleForm.FormShow(Sender: TObject);
 var
   fn : string;
 begin
+(*
   if getCommandLineParam('installer', fn) then
   begin
     edtConfigFile.text := fn;
@@ -881,15 +912,16 @@ begin
     pgMain.ActivePage := tbManage;
   end
   else
-    pgMain.ActivePage := tbConsole;
-  pgManage.ActivePage := tbGeneral;
+*)  
+  //pgMain.ActivePage := tbConsole;
+  //pgManage.ActivePage := tbGeneral;
 end;
 
 procedure TMainConsoleForm.Image2Click(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlLoincImport.Color := rgb(217, 240, 247);
+  pnlLoincImport.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlSnomedImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
   pnlProcessRXN.color := clWhite;
@@ -902,7 +934,7 @@ procedure TMainConsoleForm.Image3Click(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlCombineSnomed.Color := rgb(217, 240, 247);
+  pnlCombineSnomed.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlLoincImport.color := clWhite;
   pnlSnomedImport.color := clWhite;
   pnlProcessRXN.color := clWhite;
@@ -915,7 +947,7 @@ procedure TMainConsoleForm.Image4Click(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlSnomedImport.Color := rgb(217, 240, 247);
+  pnlSnomedImport.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlLoincImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
   pnlProcessRXN.color := clWhite;
@@ -928,7 +960,7 @@ procedure TMainConsoleForm.Image5Click(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlProcessRXN.Color := rgb(217, 240, 247);
+  pnlProcessRXN.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlProcessNDC.Color := clWhite;
   pnlProcessUNII.Color := clWhite;
   pnlLoincImport.color := clWhite;
@@ -936,6 +968,7 @@ begin
   pnlSnomedImport.color := clWhite;
   pgTerminologies.ActivePageIndex := 3;
 end;
+
 
 procedure TMainConsoleForm.lbEditionsClick(Sender: TObject);
 begin
@@ -947,6 +980,7 @@ var
   i : integer;
   ts : TStringList;
 begin
+  (*
   if FEPManager.Focus <> nil then
   begin
     ts := FEPManager.Focus.prop['packages'].values;
@@ -960,44 +994,50 @@ begin
       ts.Delete(i);
     FConfig.save;
   end;
+  *)
 end;
 
 procedure TMainConsoleForm.MenuItem11Click(Sender: TObject);
-var
-  TestForm : TTestForm;
+//var
+//  TestForm : TTestForm;
 begin
+  (*
   TestForm := TTestForm.create(self);
   try
     TestForm.ShowModal;
   finally
     TestForm.free;
   end;
+*)
 end;
 
 procedure TMainConsoleForm.MenuItem17Click(Sender: TObject);
 begin
-  Close;
+//  Close;
 end;
 
 procedure TMainConsoleForm.MenuItem33Click(Sender: TObject);
 begin
-  OpenURL('http://www.healthintersections.com.au/wiki/index.php/Console/Manager_Documentation');
+//  OpenURL('http://www.healthintersections.com.au/wiki/index.php/Console/Manager_Documentation');
 end;
 
 procedure TMainConsoleForm.MenuItem37Click(Sender: TObject);
 var
   frm : TConsoleAboutForm;
 begin
+(*
   frm := TConsoleAboutForm.create(self);
   try
     frm.ShowModal;
   finally
     frm.Free;
   end;
+*)
 end;
 
 procedure TMainConsoleForm.MenuItem4Click(Sender: TObject);
 begin
+(*
   ServerConnectionForm.edtServer.Text := FAddress;
   ServerConnectionForm.edtServer.ReadOnly := false;
   ServerConnectionForm.edtPassword.Text := FPassword;
@@ -1016,11 +1056,13 @@ begin
       FTelnet.Disconnect;
     FStatus := csDiconnected;
   end;
+*)
 end;
 
 procedure TMainConsoleForm.MenuItem6Click(Sender: TObject);
 begin
-  PackageCacheForm := TPackageCacheForm.create(self);
+(*
+PackageCacheForm := TPackageCacheForm.create(self);
    try
      PackageCacheForm.Ini := FIni;
      if (FConfig <> nil) and (FConfig.service['package-cache'].value <> '') then
@@ -1029,8 +1071,10 @@ begin
    finally
      PackageCacheForm.free;
    end;
+*)
 end;
 
+(*
 procedure TMainConsoleForm.connectToServer(server : String);
 var
   pwd : String;
@@ -1066,7 +1110,9 @@ begin
     FStatus := csDiconnected;
   end;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.GetODBCDriversList(list : TStrings);
 var
   aStringlist   : TStringlist;
@@ -1088,6 +1134,7 @@ Begin
     aStringlist.Sort;
   end;
 end;
+*)
 
 procedure TMainConsoleForm.SetConfigEditable;
 begin
@@ -1096,9 +1143,9 @@ begin
   if FConfig <> nil then
     FConfig.Free;
   FConfig := TFHIRServerConfigFile.create(edtConfigFile.text);
-  FTxManager.ConfigFile := FConfig.link;
-  FEPManager.ConfigFile := FConfig.link;
-  FIDManager.ConfigFile := FConfig.link;
+  //FTxManager.ConfigFile := FConfig.link;
+  //FEPManager.ConfigFile := FConfig.link;
+  //FIDManager.ConfigFile := FConfig.link;
 
   FLoading := true;
   try
@@ -1164,9 +1211,9 @@ procedure TMainConsoleForm.SetConfigReadonly;
 begin
   FConfig.Free;
   FConfig := nil;
-  FTxManager.ConfigFile := nil;
-  FEPManager.ConfigFile := nil;
-  FIDManager.ConfigFile := nil;
+  //FTxManager.ConfigFile := nil;
+  //FEPManager.ConfigFile := nil;
+  //FIDManager.ConfigFile := nil;
 
   FLoading := true;
   try
@@ -1226,6 +1273,7 @@ begin
   end;
 end;
 
+(*
 function matchesVersion(ep, pi, piv : String):boolean;
 begin
   if ep = 'r2' then
@@ -1239,7 +1287,9 @@ begin
   else
     result := false;
 end;
+*)
 
+(*
 function isAutomatic(ep : String; pi : TFHIRPackageInfo):boolean;
 begin
   if pi.id = 'hl7.fhir.core' then
@@ -1277,7 +1327,9 @@ begin
   lvPackages.ViewStyle := vsIcon;
   lvPackages.ViewStyle := vsList;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.updateDoco;
 begin
   if ActiveControl = chkWebMode then
@@ -1346,27 +1398,18 @@ begin
     lblDoco.caption := ''
 
 end;
+*)
 
 procedure TMainConsoleForm.MenuItem7Click(Sender: TObject);
 begin
-  connectToServer((Sender as TMenuItem).Caption);
-end;
-
-procedure TMainConsoleForm.MenuItem8Click(Sender: TObject);
-begin
-
-end;
-
-procedure TMainConsoleForm.Panel46Click(Sender: TObject);
-begin
-
+//  connectToServer((Sender as TMenuItem).Caption);
 end;
 
 procedure TMainConsoleForm.pnlProcessNDCClick(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlProcessNDC.Color := rgb(217, 240, 247);
+  pnlProcessNDC.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlProcessUNII.Color := clWhite;
   pnlProcessRXN.Color := clWhite;
   pnlLoincImport.color := clWhite;
@@ -1379,18 +1422,13 @@ procedure TMainConsoleForm.pnlProcessUNIIClick(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlProcessUNII.Color := rgb(217, 240, 247);
+  pnlProcessUNII.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlProcessNDC.Color := clWhite;
   pnlProcessRXN.Color := clWhite;
   pnlLoincImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
   pnlSnomedImport.color := clWhite;
   pgTerminologies.ActivePageIndex := 5;
-end;
-
-procedure TMainConsoleForm.pnlSnomedImportClick(Sender: TObject);
-begin
-
 end;
 
 procedure TMainConsoleForm.rbNDCMSSQLClick(Sender: TObject);
@@ -1403,11 +1441,6 @@ begin
   edtNDCSQLiteFile.enabled := rbNDCSQLite.Checked;
 end;
 
-procedure TMainConsoleForm.rbRXNMySQLChange(Sender: TObject);
-begin
-
-end;
-
 procedure TMainConsoleForm.rbRXNMySQLClick(Sender: TObject);
 begin
   cbxRXNDriver.enabled := not rbRXNSQLite.Checked;
@@ -1416,10 +1449,6 @@ begin
   edtRXNPassword.enabled := not rbRXNSQLite.Checked;
   edtRXNUsername.enabled := not rbRXNSQLite.Checked;
   edtRXNSQLiteFile.enabled := rbRXNSQLite.Checked;
-end;
-
-procedure TMainConsoleForm.rbRXNSQLiteClick(Sender: TObject);
-begin
 end;
 
 procedure TMainConsoleForm.rbUNIISQLiteClick(Sender: TObject);
@@ -1432,30 +1461,6 @@ begin
   edtUNIISQLiteFile.enabled := rbUNIISQLite.Checked;
 end;
 
-procedure TMainConsoleForm.tbConsoleContextPopup(Sender: TObject;
-  MousePos: TPoint; var Handled: Boolean);
-begin
-
-end;
-
-procedure TMainConsoleForm.tbNDCContextPopup(Sender: TObject; MousePos: TPoint;
-  var Handled: Boolean);
-begin
-
-end;
-
-procedure TMainConsoleForm.tbTerminologiesContextPopup(Sender: TObject;
-  MousePos: TPoint; var Handled: Boolean);
-begin
-
-end;
-
-procedure TMainConsoleForm.tbUniiContextPopup(Sender: TObject;
-  MousePos: TPoint; var Handled: Boolean);
-begin
-
-end;
-
 procedure TMainConsoleForm.edtFilterChange(Sender: TObject);
 var
   s : String;
@@ -1465,9 +1470,11 @@ begin
   mConsole.lines.BeginUpdate;
   try
     mConsole.Lines.clear;
+    (*
     for s in FLines do
       if passesFilter(s) then
         mConsole.Lines.add(s);
+        *)
   finally
     mConsole.Lines.EndUpdate;
   end;
@@ -1478,17 +1485,18 @@ procedure TMainConsoleForm.edtGoogleIdChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['googleid'].value := edtGoogleId.Text;
-    FConfig.Save;
+//    FConfig.web['googleid'].value := edtGoogleId.Text;
+//    FConfig.Save;
   end;
 end;
+
 
 procedure TMainConsoleForm.edtHostNameChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['host'].value := edtHostName.Text;
-    FConfig.Save;
+//    FConfig.web['host'].value := edtHostName.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1496,8 +1504,8 @@ procedure TMainConsoleForm.edtLangFileChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.service['langfile'].value := edtLangFile.Text;
-    FConfig.Save;
+//    FConfig.service['langfile'].value := edtLangFile.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1505,8 +1513,8 @@ procedure TMainConsoleForm.edtPrivateKeyChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['certkey'].value := edtPrivateKey.Text;
-    FConfig.Save;
+//    FConfig.web['certkey'].value := edtPrivateKey.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1514,8 +1522,8 @@ procedure TMainConsoleForm.edtRProxyCertHeaderChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['rproxy-cert-header'].value := edtRProxyCertHeader.Text;
-    FConfig.Save;
+//    FConfig.web['rproxy-cert-header'].value := edtRProxyCertHeader.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1523,8 +1531,8 @@ procedure TMainConsoleForm.edtRProxySSLHeaderChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['rproxy-ssl-value'].value := edtRProxySSLHeader.Text;
-    FConfig.Save;
+//    FConfig.web['rproxy-ssl-value'].value := edtRProxySSLHeader.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1532,8 +1540,8 @@ procedure TMainConsoleForm.edtSSLCertChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['certname'].value := edtSSLCert.Text;
-    FConfig.Save;
+//    FConfig.web['certname'].value := edtSSLCert.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1541,8 +1549,8 @@ procedure TMainConsoleForm.edtSSLPasswordChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['password'].value := edtSSLPassword.Text;
-    FConfig.Save;
+//    FConfig.web['password'].value := edtSSLPassword.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1550,8 +1558,8 @@ procedure TMainConsoleForm.edtRProxySSLPortChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['rproxy-https'].value := edtRProxySSLPort.Text;
-    FConfig.Save;
+//    FConfig.web['rproxy-https'].value := edtRProxySSLPort.Text;
+//    FConfig.Save;
   end;
 
 end;
@@ -1560,8 +1568,8 @@ procedure TMainConsoleForm.edtSSLPortChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['https'].value := edtSSLPort.Text;
-    FConfig.Save;
+//    FConfig.web['https'].value := edtSSLPort.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1569,8 +1577,8 @@ procedure TMainConsoleForm.edtTelnetPasswordChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['telnet-password'].value := edtTelnetPassword.Text;
-    FConfig.Save;
+//    FConfig.web['telnet-password'].value := edtTelnetPassword.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1578,8 +1586,8 @@ procedure TMainConsoleForm.edtRProxyPortChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['rproxy-http'].value := edtRProxyPort.Text;
-    FConfig.Save;
+//    FConfig.web['rproxy-http'].value := edtRProxyPort.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1587,8 +1595,8 @@ procedure TMainConsoleForm.edtWebPortChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['http'].value := edtWebPort.Text;
-    FConfig.Save;
+//    FConfig.web['http'].value := edtWebPort.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1596,8 +1604,8 @@ procedure TMainConsoleForm.edtWebMaxConnectionsChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['http-max-conn'].value := edtWebMaxConnections.Text;
-    FConfig.Save;
+//    FConfig.web['http-max-conn'].value := edtWebMaxConnections.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -1605,18 +1613,29 @@ procedure TMainConsoleForm.edtCacheTimeChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['http-cache-time'].value := edtCacheTime.Text;
-    FConfig.Save;
+//    FConfig.web['http-cache-time'].value := edtCacheTime.Text;
+//    FConfig.Save;
   end;
 end;
 
 procedure TMainConsoleForm.btnSourceClick(Sender: TObject);
+var
+  DirArray: TArray<String>;
+  dlgRet: boolean;
 begin
-   if (edtSource.text <> '') then
+(*
+  if (edtSource.text <> '') then
+  begin
     dlgFolder.filename := edtSource.text;
+  end;
   dlgFolder.Title := 'Choose SNOMED CT RF2 Snapshot Folder';
   if dlgFolder.Execute then
     edtSource.text := dlgFolder.filename;
+*)
+   dlgRet := false;
+   dlgRet := SelectDirectory(edtSource.text, DirArray, [], 'Choose SNOMED CT RF2 Snapshot Folder');
+  if dlgRet then
+    edtSource.text := DirArray[0];
 end;
 
 procedure TMainConsoleForm.btnStopCombineClick(Sender: TObject);
@@ -1632,18 +1651,18 @@ end;
 procedure TMainConsoleForm.btnFetchThreadsClick(Sender: TObject);
 begin
   try
-    if FConnected then
-      FTelnet.SendString('@threads'+#10);
+  if FConnected then
+//      FTelnet.SendString('@threads'+#10);
   except
   end;
 end;
 
-procedure TMainConsoleForm.cbUMLSDriverChange(Sender: TObject);
-begin
-end;
-
 procedure TMainConsoleForm.btnBaseClick(Sender: TObject);
+var
+  DirArray: TArray<String>;
+  dlgRet: boolean;
 begin
+(*
   if (edtSource.text <> '') then
   begin
     dlgFolder.filename := edtBase.text;
@@ -1651,18 +1670,24 @@ begin
   dlgFolder.Title := 'Choose SNOMED CT RF2 International Snapshot Folder';
   if dlgFolder.Execute then
     edtBase.text := dlgFolder.filename;
+*)
+   dlgRet := false;
+   dlgRet := SelectDirectory(edtBase.text, DirArray, [], 'Choose SNOMED CT RF2 International Snapshot Folder');
+  if dlgRet then
+    edtBase.text := DirArray[0];
 end;
 
 procedure TMainConsoleForm.btnCACertClick(Sender: TObject);
 begin
-  dlgOpen.filename := edtCACert.text;
-  if dlgOpen.Execute then;
-    edtCACert.text := dlgOpen.filename;
+//  dlgOpen.filename := edtCACert.text;
+//  if dlgOpen.Execute then;
+//    edtCACert.text := dlgOpen.filename;
 end;
 
 procedure TMainConsoleForm.btnCacheInfoClick(Sender: TObject);
 begin
-  try
+(*
+try
     if FConnected then
       FTelnet.SendString('@caches'+#10)
     else
@@ -1671,55 +1696,59 @@ begin
     on e : exception do
       showMessage(e.message);
   end;
-
+*)
 end;
 
 procedure TMainConsoleForm.btnCardKey1Click(Sender: TObject);
 begin
-  dlgOpen.filename := edtCardPublic.text;
-  if dlgOpen.Execute then;
-    edtCardPublic.text := dlgOpen.filename;
+//  dlgOpen.filename := edtCardPublic.text;
+//  if dlgOpen.Execute then;
+//    edtCardPublic.text := dlgOpen.filename;
 end;
 
 procedure TMainConsoleForm.btnCardKeyClick(Sender: TObject);
 begin
-  dlgOpen.filename := edtCardPrivate.text;
-  if dlgOpen.Execute then;
-    edtCardPrivate.text := dlgOpen.filename;
+//  dlgOpen.filename := edtCardPrivate.text;
+//  if dlgOpen.Execute then;
+//    edtCardPrivate.text := dlgOpen.filename;
 end;
 
 procedure TMainConsoleForm.btnCertClick(Sender: TObject);
 begin
-  dlgOpen.filename := edtSSLCert.text;
-  if dlgOpen.Execute then;
-    edtSSLCert.text := dlgOpen.filename;
+//  dlgOpen.filename := edtSSLCert.text;
+//  if dlgOpen.Execute then;
+//    edtSSLCert.text := dlgOpen.filename;
 end;
 
 procedure TMainConsoleForm.btnCertificatesFolderClick(Sender: TObject);
 begin
-  dlgFolder.filename := edtCertificatesFolder.text;
-  if dlgFolder.Execute then;
-    edtCertificatesFolder.text := dlgFolder.filename;
+//  dlgFolder.filename := edtCertificatesFolder.text;
+//  if dlgFolder.Execute then;
+//    edtCertificatesFolder.text := dlgFolder.filename;
 end;
 
 procedure TMainConsoleForm.btnCertKeyClick(Sender: TObject);
 begin
-  dlgOpen.filename := edtPrivateKey.text;
-  if dlgOpen.Execute then;
-    edtPrivateKey.text := dlgOpen.filename;
+//  dlgOpen.filename := edtPrivateKey.text;
+//  if dlgOpen.Execute then;
+//    edtPrivateKey.text := dlgOpen.filename;
 end;
 
 procedure TMainConsoleForm.btnClearCacheClick(Sender: TObject);
 begin
   try
     if FConnected then
-      FTelnet.SendString('@cache'+#10);
+//      FTelnet.SendString('@cache'+#10);
   except
   end;
 end;
 
 procedure TMainConsoleForm.btnCombinedDestinationClick(Sender: TObject);
+var
+  DirArray: TArray<String>;
+  dlgRet: boolean;
 begin
+(*
   if (edtCombinedDestination.text <> '') then
   begin
     dlgFolder.filename := edtCombinedDestination.text;
@@ -1727,6 +1756,11 @@ begin
   dlgFolder.Title := 'Choose Combined Files Destination';
   if dlgFolder.Execute then
     edtCombinedDestination.text := dlgFolder.filename;
+*)
+   dlgRet := false;
+   dlgRet := SelectDirectory(edtCombinedDestination.text, DirArray, [], 'Choose Combined Files Destination');
+  if dlgRet then
+    edtCombinedDestination.text := DirArray[0];
 end;
 
 procedure TMainConsoleForm.btnCombinedStoreClick(Sender: TObject);
@@ -1747,6 +1781,7 @@ var
   combiner : TSnomedCombiner;
   svc : TSnomedServices;
 begin
+(*
   raise EFslException.Create('not done yet');
   if not FileExists(edtInternational.Text) then
     ShowMessage('International File "'+edtInternational.Text+'" not found')
@@ -1818,6 +1853,7 @@ begin
       edtCombinedStore.enabled := true;
       cmbCallback(0, '');
     end;
+*)
 end;
 
 procedure TMainConsoleForm.btnConsoleFontClick(Sender: TObject);
@@ -1825,8 +1861,8 @@ begin
   fd.font.Assign(mConsole.font);
   if (fd.Execute) then
   begin
-    mConsole.Font.Assign(fd.font);
-    writeFontToIni(FIni, 'font', mConsole.font);
+//    mConsole.Font.Assign(fd.font);
+//    writeFontToIni(FIni, 'font', mConsole.font);
   end;
 end;
 
@@ -1872,36 +1908,34 @@ begin
     edtDestination.text := dlgSave.filename;
 end;
 
-procedure TMainConsoleForm.btnEPAddClick(Sender: TObject);
-begin
-
-end;
-
 procedure TMainConsoleForm.btnFetchObjectsClick(Sender: TObject);
 begin
   try
     if FConnected then
-      FTelnet.SendString('@classes'+#10);
+//      FTelnet.SendString('@classes'+#10);
   except
   end;
 end;
 
 procedure TMainConsoleForm.btnFetchObjectsPlusClick(Sender: TObject);
 begin
-   try
+(*
+try
     if FConnected then
       FTelnet.SendString('@classes+'+#10);
   except
   end;
+  *)
 end;
 
 procedure TMainConsoleForm.btnImportNDCClick(Sender: TObject);
 var
   start : TDateTime;
   ndc : TNdcImporter;
-  db : TFDBManager;
-  c : TFDBConnection;
+//  db : TFDBManager;
+//  c : TFDBConnection;
 begin
+(*
   FIni.WriteString('ndc-import', 'source', edtNDCFolder.text);
   if rbNDCMSSQL.checked then
     FIni.WriteString('ndc-import', 'type', 'mssql')
@@ -1979,14 +2013,16 @@ begin
     end;
     MessageDlg('Successfully Imported NDC in '+DescribePeriod(now - start), mtInformation, [mbok], 0);
   end;
+*)
 end;
 
 procedure TMainConsoleForm.btnImportUNIIClick(Sender: TObject);
 var
   start : TDateTime;
-  db : TFDBManager;
-  c : TFDBConnection;
+//  db : TFDBManager;
+//  c : TFDBConnection;
 begin
+(*
   FIni.WriteString('unii-import', 'source', edtUNIIFile.text);
   FIni.WriteString('unii-import', 'version', edtUNIIVersion.text);
   if rbUNIIMSSQL.checked then
@@ -2055,11 +2091,13 @@ begin
     end;
     MessageDlg('Successfully Imported UNII in '+DescribePeriod(now - start), mtInformation, [mbok], 0);
   end;
+*)
 end;
 
 procedure TMainConsoleForm.btnLockStatusClick(Sender: TObject);
 begin
-  try
+(*
+try
     if FConnected then
       FTelnet.SendString('@locks'+#10)
     else
@@ -2068,15 +2106,17 @@ begin
     on e : exception do
       showMessage(e.message);
   end;
+  *)
 end;
 
 procedure TMainConsoleForm.btnReIndexRxNormClick(Sender: TObject);
 var
   start : TDateTime;
   rxn : TUMLSImporter;
-  db : TFDBManager;
-  c : TFDBConnection;
+//  db : TFDBManager;
+//  c : TFDBConnection;
 begin
+(*
   FIni.WriteString('rxnorm-import', 'source', edtRXNFolder.text);
   if rbRXNMSSQL.checked then
     FIni.WriteString('rxnorm-import', 'type', 'mssql')
@@ -2154,13 +2194,15 @@ begin
     end;
     MessageDlg('Successfully Imported RxNorm in '+DescribePeriod(now - start), mtInformation, [mbok], 0);
   end;
+*)
 end;
 
 procedure TMainConsoleForm.btnTestNDCClick(Sender: TObject);
-var
-  db : TFDBManager;
-  c : TFDBConnection;
+//var
+//  db : TFDBManager;
+//  c : TFDBConnection;
 begin
+(*
   FIni.WriteString('ndc-import', 'source', edtNDCFolder.text);
   if rbNDCMSSQL.checked then
     FIni.WriteString('ndc-import', 'type', 'mssql')
@@ -2202,13 +2244,15 @@ begin
     on e : exception do
       ShowMessage('Failure: '+e.Message);
   end;
+*)
 end;
 
 procedure TMainConsoleForm.btnTestUNIIClick(Sender: TObject);
-var
-  db : TFDBManager;
-  c : TFDBConnection;
+//var
+//  db : TFDBManager;
+//  c : TFDBConnection;
 begin
+(*
   FIni.WriteString('unii-import', 'source', edtUNIIFile.text);
   FIni.WriteString('unii-import', 'version', edtUNIIVersion.text);
   if rbUNIIMSSQL.checked then
@@ -2251,13 +2295,15 @@ begin
     on e : exception do
       ShowMessage('Failure: '+e.Message);
   end;
+*)
 end;
 
 procedure TMainConsoleForm.btnTextRxNormClick(Sender: TObject);
-var
-  db : TFDBManager;
-  c : TFDBConnection;
+//var
+//  db : TFDBManager;
+//  c : TFDBConnection;
 begin
+(*
   if rbRXNMSSQL.checked then
     FIni.WriteString('rxnorm-import', 'type', 'mssql')
   else if rbRXNSQLite.checked then
@@ -2298,6 +2344,7 @@ begin
     on e : exception do
       ShowMessage('Failure: '+e.Message);
   end;
+*)
 end;
 
 procedure TMainConsoleForm.btnImportLoincClick(Sender: TObject);
@@ -2368,13 +2415,14 @@ begin
     FIni.WriteInteger('snomed-import', 'edition', cbxEdition.ItemIndex);
     FIni.WriteInteger('snomed-import', 'date', trunc(edtDate.Date));
     FIni.WriteString('snomed-import', 'dest', edtDestination.text);
-    module := getSnomedModule;
-    nb := needsBaseForImport(module);
+    module := '900000000000207008'; //getSnomedModule;
+    nb := false; //needsBaseForImport(module);
     if nb and not FolderExists(edtBase.Text) then
       ShowMessage('Base Folder "'+edtSource.Text+'" not found')
     else
     begin
       version := FormatDateTime('yyyymmdd', edtDate.Date);
+      version := '20220731';
       FWantStop := false;
       btnSnomedImportStop.Visible := true;
       cursor := crHourGlass;
@@ -2439,12 +2487,21 @@ begin
 end;
 
 procedure TMainConsoleForm.btnLoincSourceClick(Sender: TObject);
+var
+  DirArray: TArray<String>;
+  dlgRet: boolean;
 begin
+(*
    if (edtLoincSource.text <> '') then
       dlgFolder.filename := edtLoincSource.text;
     dlgFolder.Title := 'Choose LOINC Content Folder';
     if dlgFolder.Execute then
       edtLoincSource.text := dlgFolder.filename;
+*)
+   dlgRet := false;
+   dlgRet := SelectDirectory(edtLoincSource.text, DirArray, [], 'Choose LOINC Content Folder');
+  if dlgRet then
+    edtLoincSource.text := DirArray[0];
 end;
 
 
@@ -2540,10 +2597,10 @@ begin
   if not FLoading then
   begin
     if chkCaching.Checked then
-      FConfig.web['caching'].value := 'true'
+//      FConfig.web['caching'].value := 'true'
     else
-      FConfig.web['caching'].value := 'false';
-    FConfig.save;
+//      FConfig.web['caching'].value := 'false';
+//    FConfig.save;
   end;
 end;
 
@@ -2552,10 +2609,10 @@ begin
   if not FLoading then
   begin
     if chkWebMode.Checked then
-      FConfig.web['plain-mode'].value := 'redirect'
+//      FConfig.web['plain-mode'].value := 'redirect'
     else
-      FConfig.web['plain-mode'].value := 'serve';
-    FConfig.save;
+//      FConfig.web['plain-mode'].value := 'serve';
+//    FConfig.save;
   end;
 end;
 
@@ -2563,8 +2620,8 @@ procedure TMainConsoleForm.edtAdminEmailChange(Sender: TObject);
 begin
   if not FLoading and (FConfig <> nil) then
   begin
-    FConfig.admin['email'].value := edtAdminEmail.Text;
-    FConfig.Save;
+//    FConfig.admin['email'].value := edtAdminEmail.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -2572,8 +2629,8 @@ procedure TMainConsoleForm.edtAdminOrganizationChange(Sender: TObject);
 begin
   if not FLoading and (FConfig <> nil) then
   begin
-    FConfig.admin['ownername'].value := edtAdminOrganization.Text;
-    FConfig.Save;
+//    FConfig.admin['ownername'].value := edtAdminOrganization.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -2581,8 +2638,8 @@ procedure TMainConsoleForm.edtAdminSCIMSaltChange(Sender: TObject);
 begin
   if not FLoading and (FConfig <> nil) then
   begin
-    FConfig.admin['scim-salt'].value := edtAdminSCIMSalt.Text;
-    FConfig.Save;
+//    FConfig.admin['scim-salt'].value := edtAdminSCIMSalt.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -2590,8 +2647,8 @@ procedure TMainConsoleForm.edtAdminSMSChange(Sender: TObject);
 begin
   if not FLoading and (FConfig <> nil) then
   begin
-    FConfig.admin['owner-sms'].value := edtAdminSMS.Text;
-    FConfig.Save;
+//    FConfig.admin['owner-sms'].value := edtAdminSMS.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -2599,8 +2656,8 @@ procedure TMainConsoleForm.edtCACertChange(Sender: TObject);
 begin
   if not FLoading and (FConfig <> nil) then
   begin
-    FConfig.web['cacertname'].value := edtCACert.Text;
-    FConfig.Save;
+//    FConfig.web['cacertname'].value := edtCACert.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -2608,8 +2665,8 @@ procedure TMainConsoleForm.edtCardPrivateChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['card-key'].value := edtCardPrivate.Text;
-    FConfig.Save;
+//    FConfig.web['card-key'].value := edtCardPrivate.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -2617,8 +2674,8 @@ procedure TMainConsoleForm.edtCardPublicChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['card-jwks'].value := edtCardPublic.Text;
-    FConfig.Save;
+//    FConfig.web['card-jwks'].value := edtCardPublic.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -2626,8 +2683,8 @@ procedure TMainConsoleForm.edtCertificatesFolderChange(Sender: TObject);
 begin
   if not FLoading then
   begin
-    FConfig.web['cert-store'].value := edtCertificatesFolder.Text;
-    FConfig.Save;
+//    FConfig.web['cert-store'].value := edtCertificatesFolder.Text;
+//    FConfig.Save;
   end;
 end;
 
@@ -2641,8 +2698,8 @@ begin
     except
       on e : Exception do
       begin
-        MessageDlg('Error Loading Configuration', 'Eror loading '+edtConfigFile.text+': '+e.message, mtError, [mbok], 0);
-        SetConfigReadOnly;
+//        MessageDlg('Error Loading Configuration', 'Eror loading '+edtConfigFile.text+': '+e.message, mtError, [mbok], 0);
+//        SetConfigReadOnly;
       end;
     end;
   end
@@ -2657,12 +2714,13 @@ procedure TMainConsoleForm.Timer1Timer(Sender: TObject);
 var
   ts, tsl, tsd, tsth : TStringList;
   s, ss, rs, base : String;
-  st : TConnectionStatus;
+//  st : TConnectionStatus;
   id : String;
-  session : TServerSession;
+//  session : TServerSession;
   i : integer;
   d : TDateTime;
 begin
+  (*
   ts := TStringList.create;
   tsl := TStringList.create;
   tsd := TStringList.create;
@@ -2764,7 +2822,8 @@ begin
   sBar.Panels[2].Text := inttostr(mConsole.lines.count) + ' '+StringPlural('Line', mConsole.lines.count);
   sBar.Panels[3].Text := Logging.MemoryStatus(true);
   updateDoco;
-end;
+  *)
+  end;
 
 procedure TMainConsoleForm.ToolButton1Click(Sender: TObject);
 begin
@@ -2773,6 +2832,7 @@ end;
 
 procedure TMainConsoleForm.ToolButton3Click(Sender: TObject);
 begin
+  (*
   ServerConnectionForm.edtServer.Text := FAddress;
   ServerConnectionForm.edtPassword.Text := FPassword;
   if ServerConnectionForm.ShowModal = mrOk then
@@ -2788,12 +2848,15 @@ begin
     FTelnet.Disconnect;
     FStatus := csDiconnected;
   end;
+  *)
 end;
 
+(*
 procedure TMainConsoleForm.recordSessionLength(start, length: int64);
 begin
   FStatistics.recordSession(start, length);
 end;
+*)
 
 function ignoreLine(s : String) : boolean;
 var
@@ -2811,6 +2874,7 @@ begin
   end;
 end;
 
+(*
 procedure TMainConsoleForm.processIncomingLine(line : String);
 var
   reply : String;
@@ -2920,6 +2984,7 @@ begin
     FTelnet.Connect;
   end;
 end;
+*)
 
 procedure TMainConsoleForm.sctCallback(pct: Integer; action: String);
 begin
@@ -3000,9 +3065,9 @@ begin
 end;
 
 procedure TMainConsoleForm.SetUpTerminologyPage;
-var
-  env : TOdbcEnv;
-  adm : TOdbcAdministrator;
+//var
+//  env : TOdbcEnv;
+//  adm : TOdbcAdministrator;
 begin
   edtSource.text := FIni.ReadString('snomed-import', 'source', '');
   edtBase.text := FIni.ReadString('snomed-import', 'base', '');
@@ -3023,18 +3088,18 @@ begin
   if lbEditions.Items.Count > 0 then
     lbEditions.Itemindex := 0;
 
-    env := TOdbcEnv.create;
+//    env := TOdbcEnv.create;
   try
-    adm := TOdbcAdministrator.create(env);
+//    adm := TOdbcAdministrator.create(env);
     try
-      cbxRXNDriver.items.assign(adm.Drivers);
-      cbxNDCDriver.items.assign(adm.Drivers);
-      cbxUNIIDriver.items.assign(adm.Drivers);
+//      cbxRXNDriver.items.assign(adm.Drivers);
+//      cbxNDCDriver.items.assign(adm.Drivers);
+//      cbxUNIIDriver.items.assign(adm.Drivers);
     finally
-      adm.Free;
+//      adm.Free;
     end;
   finally
-    env.free;
+//    env.free;
   end;
 
   edtRXNFolder.text := FIni.ReadString('rxnorm-import', 'source', '');
@@ -3073,7 +3138,7 @@ begin
   edtUNIIUsername.text := FIni.ReadString('unii-import', 'username', '');
   edtUNIISQLiteFile.text := FIni.ReadString('unii-import', 'sqllite', '');
 
-  pnlSnomedImport.Color := rgb(217, 240, 247);
+  pnlSnomedImport.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlLoincImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
   pnlProcessRXN.color := clWhite;
@@ -3101,6 +3166,7 @@ begin
   end;
 end;
 
+(*
 procedure TMainConsoleForm.DoIncoming(Sender: TIdTelnet; const Buffer: TIdBytes);
 var
   s : String;
@@ -3136,7 +3202,6 @@ begin
   btnClearCache.enabled := false;
   btnFetchThreads.enabled := false;
 end;
-
+*)
 
 end.
-

@@ -47,8 +47,9 @@ interface
 
 uses
   SysUtils, Classes, SyncObjs,
-  IdHTTP, IdSMTP, IdMessage, idGlobal, fsl_websocket, IdText, IdAttachment, IdPOP3, IdMessageParts, IdExplicitTLSClientServerBase,
-  IdOpenSSLIOHandlerClient, IdOpenSSLVersion,
+  IdHTTP, IdSMTP, IdMessage, idGlobal, fsl_websocket, IdText, IdAttachment, IdPOP3, IdMessageParts,
+  //IdExplicitTLSClientServerBase,
+//  IdOpenSSLIOHandlerClient, IdOpenSSLVersion,
   fsl_base, fsl_utilities, fsl_threads, fsl_fpc,
   fsl_http,
   fdb_manager, fdb_dialects,
@@ -331,7 +332,7 @@ procedure TSubscriptionManager.processEmails;
 var
   pop : TIdPOP3;
   msg : TIdMessage;
-  ssl : TIdOpenSSLIOHandlerClient;
+//  ssl : TIdOpenSSLIOHandlerClient;
   c, i : integer;
 begin
 //  if FDirectPopHost = '' then
@@ -347,15 +348,15 @@ begin
       pop.Password := settings.DirectPassword;
       if settings.SMTPUseTLS then
       begin
-        ssl := TIdOpenSSLIOHandlerClient.create;
-        pop.IOHandler := ssl;
-        pop.UseTLS := utUseExplicitTLS;
-        ssl.Destination := settings.DirectPopHost+':'+settings.DirectPopPort;
-        ssl.Host := settings.DirectPopHost;
-        ssl.MaxLineAction := maException;
-        ssl.Port := StrToInt(settings.DirectPopPort);
-        ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_3;
-        ssl.Options.VerifyServerCertificate := false;
+//        ssl := TIdOpenSSLIOHandlerClient.create;
+//        pop.IOHandler := ssl;
+//        pop.UseTLS := utUseExplicitTLS;
+//        ssl.Destination := settings.DirectPopHost+':'+settings.DirectPopPort;
+//        ssl.Host := settings.DirectPopHost;
+//        ssl.MaxLineAction := maException;
+//        ssl.Port := StrToInt(settings.DirectPopPort);
+//        ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_3;
+//        ssl.Options.VerifyServerCertificate := false;
       end;
       pop.Connect();
       try
@@ -695,7 +696,7 @@ procedure TSubscriptionManager.doSendEmail(subst : TFHIRSubscriptionW; resource 
 var
   sender : TIdSMTP;
   msg : TIdMessage;
-  ssl : TIdOpenSSLIOHandlerClient;
+//  ssl : TIdOpenSSLIOHandlerClient;
   comp : TFHIRComposer;
   part: TIdText;
   m : TMemoryStream;
@@ -710,15 +711,15 @@ begin
     sender.Password := chooseSMTPPassword(direct);
     if settings.SMTPUseTLS then
     begin
-      ssl := TIdOpenSSLIOHandlerClient.create;
-      sender.IOHandler := ssl;
-      sender.UseTLS := utUseExplicitTLS;
-      ssl.Destination := chooseSMTPHost(direct)+':'+chooseSMTPPort(direct);
-      ssl.Host := chooseSMTPHost(direct);
-      ssl.MaxLineAction := maException;
-      ssl.Port := StrToInt(chooseSMTPPort(direct));
-      ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_3;
-      ssl.Options.VerifyServerCertificate := false;
+//      ssl := TIdOpenSSLIOHandlerClient.create;
+//      sender.IOHandler := ssl;
+//      sender.UseTLS := utUseExplicitTLS;
+//      ssl.Destination := chooseSMTPHost(direct)+':'+chooseSMTPPort(direct);
+//      ssl.Host := chooseSMTPHost(direct);
+//      ssl.MaxLineAction := maException;
+//      ssl.Port := StrToInt(chooseSMTPPort(direct));
+//      ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_3;
+//      ssl.Options.VerifyServerCertificate := false;
     end;
     sender.Connect;
     msg := TIdMessage.Create(Nil);
@@ -790,7 +791,7 @@ procedure TSubscriptionManager.sendByRest(id : String; subst: TFHIRSubscriptionW
 var
   http : TIdHTTP;
   client : TFhirClientV;
-  ssl : TIdOpenSSLIOHandlerClient;
+//  ssl : TIdOpenSSLIOHandlerClient;
   stream : TMemoryStream;
   s : String;
 begin
@@ -798,14 +799,14 @@ begin
   begin
     stream := TMemoryStream.Create;
     http := TIdHTTP.create(nil);
-    ssl := TIdOpenSSLIOHandlerClient.Create(nil);
+//    ssl := TIdOpenSSLIOHandlerClient.Create(nil);
     try
-      http.IOHandler := ssl;
+//      http.IOHandler := ssl;
       for s in subst.headers do
         http.Request.CustomHeaders.Add(s);
       http.Post(subst.endpoint, stream);
     finally
-      ssl.Free;
+//      ssl.Free;
       http.Free;
       stream.Free;
     end;
@@ -892,7 +893,7 @@ procedure TSubscriptionManager.sendDirectResponse(id, address, message: String; 
 var
   sender : TIdSMTP;
   msg : TIdMessage;
-  ssl : TIdOpenSSLIOHandlerClient;
+//  ssl : TIdOpenSSLIOHandlerClient;
   part: TIdText;
   m : TMemoryStream;
   att : TIdAttachment;
@@ -910,15 +911,15 @@ begin
     sender.Password := settings.DirectPassword;
     if settings.SMTPUseTLS then
     begin
-      ssl := TIdOpenSSLIOHandlerClient.create;
-      sender.IOHandler := ssl;
-      sender.UseTLS := utUseExplicitTLS;
-      ssl.Destination := settings.DirectHost+':'+settings.DirectPort;
-      ssl.Host := settings.DirectHost;
-      ssl.MaxLineAction := maException;
-      ssl.Port := StrToInt(settings.DirectPort);
-      ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_3;
-      ssl.Options.VerifyServerCertificate := false;
+//      ssl := TIdOpenSSLIOHandlerClient.create;
+//      sender.IOHandler := ssl;
+//      sender.UseTLS := utUseExplicitTLS;
+//      ssl.Destination := settings.DirectHost+':'+settings.DirectPort;
+//      ssl.Host := settings.DirectHost;
+//      ssl.MaxLineAction := maException;
+//      ssl.Port := StrToInt(settings.DirectPort);
+//      ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_3;
+//      ssl.Options.VerifyServerCertificate := false;
     end;
     sender.Connect;
     msg := TIdMessage.Create(Nil);

@@ -34,7 +34,9 @@ interface
 
 uses
   SysUtils, {$IFDEF FPC} zstream, {$ELSE} AnsiStrings, {$ENDIF} Classes, ZLib, Generics.Collections,
-  fsl_base, fsl_utilities, fsl_stream, fsl_json, fsl_fpc, fsl_http, fsl_fetcher, fsl_versions,
+  fsl_base, fsl_utilities, fsl_stream, fsl_json, fsl_fpc, fsl_http,
+  //fsl_fetcher,
+  fsl_versions,
   fhir_objects, fhir_uris;
 
 function mimeTypeToFormat(mt : String; def : TFHIRFormat = ffUnspecified) : TFHIRFormat;
@@ -208,16 +210,16 @@ end;
 
 function CustomResourceNameIsOk(name : String) : boolean;
 var
-  fetcher : TInternetFetcher;
+  //fetcher : TInternetFetcher;
   json : TJsonObject;
   stream : TFileStream;
   n : TJsonNode;
 begin
   result := false;
-  fetcher := TInternetFetcher.create;
+  //fetcher := TInternetFetcher.create;
   try
-    fetcher.URL := 'http://www.healthintersections.com.au/resource-policy.json';
-    fetcher.Fetch;
+    //fetcher.URL := 'http://www.healthintersections.com.au/resource-policy.json';
+    //fetcher.Fetch;
 //    fetcher.Buffer.SaveToFileName(filePath(['[tmp]', 'test.json']));
     stream := TFileStream.Create(filePath(['[tmp]', 'test.json']), fmOpenRead + fmShareDenyWrite);
     try
@@ -238,7 +240,7 @@ begin
       stream.Free;
     end;
   finally
-    fetcher.Free;
+    //fetcher.Free;
   end;
 end;
 

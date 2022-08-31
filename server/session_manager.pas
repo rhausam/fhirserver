@@ -34,7 +34,8 @@ interface
 
 uses
   SysUtils, Classes, fsl_threads,
-  fsl_base, fsl_utilities, fsl_json, fsl_crypto,
+  fsl_base, fsl_utilities, fsl_json,
+  //fsl_crypto,
   fhir_objects,  fhir_common, fhir_factory, fhir_uris,
   scim_server,
   session, security, user_manager, utilities, storage;

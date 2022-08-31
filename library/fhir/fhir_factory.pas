@@ -35,7 +35,8 @@ interface
 
 uses
   SysUtils, Classes,
-  fsl_base, fsl_utilities, fsl_collections, fsl_json, fsl_xml, fsl_stream, fsl_http, fsl_npm_cache,
+  fsl_base, fsl_utilities, fsl_collections, fsl_json, fsl_xml, fsl_stream, fsl_http,
+  //fsl_npm_cache,
   fsl_ucum, fhir_objects, fhir_parser, fhir_narrative, fhir_pathengine, fhir_common, fhir_xhtml, fhir_elementmodel, fhir_client, fhir_uris;
 
 type
@@ -250,19 +251,19 @@ type
   TFHIRWorkerContextWithFactory = class (TFHIRWorkerContextV)
   private
     FFactory : TFHIRFactory;
-    FLoadInfo : TPackageLoadingInformation;
-    FPcm : TFHIRPackageManager;
+    //FLoadInfo : TPackageLoadingInformation;
+    //FPcm : TFHIRPackageManager;
   protected
     function sizeInBytesV(magic : integer) : cardinal; override;
   public
-    constructor Create(factory : TFHIRFactory; pcm : TFHIRPackageManager); overload; virtual;
+    //constructor Create(factory : TFHIRFactory; pcm : TFHIRPackageManager); overload; virtual;
     destructor Destroy; override;
 
     function link : TFHIRWorkerContextWithFactory;
 
     property Factory : TFHIRFactory read FFactory;
-    property pcm : TFHIRPackageManager read FPcm;
-    property LoadInfo : TPackageLoadingInformation read FLoadInfo;
+    //property pcm : TFHIRPackageManager read FPcm;
+    //property LoadInfo : TPackageLoadingInformation read FLoadInfo;
 
     procedure loadResourceJson(rType, id : String; json : TStream); override;
     procedure seeResource(res : TFHIRResourceV); overload; virtual; abstract;
@@ -428,6 +429,7 @@ end;
 
 { TFHIRWorkerContextWithFactory }
 
+(*
 constructor TFHIRWorkerContextWithFactory.Create(factory: TFHIRFactory; pcm : TFHIRPackageManager);
 begin
   inherited Create;
@@ -436,11 +438,12 @@ begin
   FLoadInfo.OnLoadEvent := loadResourceJson;
   FPcm := pcm;
 end;
+*)
 
 destructor TFHIRWorkerContextWithFactory.Destroy;
 begin
-  FPcm.free;
-  FLoadInfo.Free;
+  //FPcm.free;
+  //FLoadInfo.Free;
   FFactory.free;
   inherited;
 end;
@@ -473,7 +476,7 @@ function TFHIRWorkerContextWithFactory.sizeInBytesV(magic : integer) : cardinal;
 begin
   result := inherited sizeInBytesV(magic);
   inc(result, FFactory.sizeInBytes(magic));
-  inc(result, FLoadInfo.sizeInBytes(magic));
+  //inc(result, FLoadInfo.sizeInBytes(magic));
 end;
 
 { TFHIRValidatorContext }

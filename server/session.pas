@@ -35,7 +35,9 @@ interface
 uses
   SysUtils, Classes, Generics.Collections,
   IdGlobal,
-  fsl_base, fsl_utilities, fsl_stream, fsl_json, fsl_crypto, fsl_scim, fsl_xml,
+  fsl_base, fsl_utilities, fsl_stream, fsl_json,
+  //fsl_crypto,
+  fsl_scim, fsl_xml,
   fsl_http, fsl_graphql,
   fhir_objects,  fhir_xhtml, fhir_common, fhir_factory, fhir_uris,
   fhir_indexing, security, tags, bundlebuilder;

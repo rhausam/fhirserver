@@ -40,7 +40,7 @@ uses
   fhir_codesystem_service, fhir_valuesets,
   ftx_service, ftx_loinc_services, ftx_ucum_services, ftx_sct_services, tx_rxnorm, tx_unii, tx_acir,
   tx_uri, tx_areacode, tx_countrycode, tx_us_states, tx_iso_4217, tx_version,
-  tx_mimetypes, ftx_lang, tx_ndc, tx_hgvs,
+  tx_mimetypes, ftx_lang, tx_ndc, //tx_hgvs,
   utilities, server_config, kernel_thread;
 
 const
@@ -2005,7 +2005,7 @@ begin
   add(TMimeTypeCodeServices.Create(FLanguages.link)).free;
   add(TCountryCodeServices.Create(FLanguages.link)).free;
   add(TUSStateServices.Create(FLanguages.link)).free;
-  add(THGVSProvider.Create(FLanguages.link)).free;
+  //add(THGVSProvider.Create(FLanguages.link)).free;
 
   for tx in txList.sections do
   begin

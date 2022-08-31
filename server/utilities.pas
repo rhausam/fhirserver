@@ -35,7 +35,10 @@ interface
 uses
   {$IFDEF WINDOWS} Windows, {$ENDIF}
   SysUtils, Classes, IniFiles, Generics.Collections,
-  IdSMTP, IdMessage, IdOpenSSLIOHandlerClient, IdExplicitTLSClientServerBase, IdGlobal, IdOpenSSLVersion,
+  IdSMTP, IdMessage,
+  //IdOpenSSLIOHandlerClient, IdExplicitTLSClientServerBase,
+  //IdGlobal,
+  //IdOpenSSLVersion,
 //  IdMultipartFormData, IdHeaderList, IdCustomHTTPServer, IdHTTPServer, IdTCPServer, IdContext, IdHTTP, IdCookie, IdZLibCompressorBase, IdSSL,
 //  IdCompressorZLib, IdZLib, IdSchedulerOfThreadPool, IdGlobalProtocols, fsl_websocket,
 //  IdOpenSSLIOHandlerServer, IdOpenSSLX509,
@@ -412,7 +415,7 @@ procedure sendEmail(settings : TFHIRServerSettings; dest, subj, body: String);
 var
   sender : TIdSMTP;
   msg : TIdMessage;
-  ssl : TIdOpenSSLIOHandlerClient;
+//  ssl : TIdOpenSSLIOHandlerClient;
 begin
   sender := TIdSMTP.Create(Nil);
   try
@@ -422,6 +425,7 @@ begin
     sender.Password := settings.SMTPPassword;
     if settings.SMTPUseTLS then
     begin
+(*
       ssl := TIdOpenSSLIOHandlerClient.create;
       sender.IOHandler := ssl;
       sender.UseTLS := utUseExplicitTLS;
@@ -431,6 +435,7 @@ begin
       ssl.Port := StrToInt(settings.SMTPPort);
       ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_3;
       ssl.Options.VerifyServerCertificate := false;
+*)
     end;
     sender.Connect;
     msg := TIdMessage.Create(Nil);

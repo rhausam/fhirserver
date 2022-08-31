@@ -36,7 +36,8 @@ uses
   SysUtils, Classes, Generics.Collections,
   IdContext, IdCustomHTTPServer, IdHashSHA,
   fsl_base, fsl_json, fsl_utilities, fsl_threads, fsl_stream,
-  fsl_scrypt, fsl_http,
+  //fsl_scrypt,
+  fsl_http,
   fdb_manager,
   fhir_objects,
   session,
@@ -181,7 +182,7 @@ function TSCIMServer.CheckPassword(uk: integer; pw, hash: String): boolean;
 var
   dummy : boolean;
 begin
-  result := TSCrypt.CheckPassword(inttostr(uk)+':'+pw, hash, dummy);
+//  result := TSCrypt.CheckPassword(inttostr(uk)+':'+pw, hash, dummy);
 end;
 
 constructor TSCIMServer.Create(db: TFDBManager; salt, host, defaultRights : String; forInstall : boolean);
@@ -405,7 +406,7 @@ end;
 
 function TSCIMServer.HashPassword(uk : integer; pw: String): String;
 begin
-  result := TSCrypt.HashPassword(inttostr(uk)+':'+pw);
+//  result := TSCrypt.HashPassword(inttostr(uk)+':'+pw);
 end;
 
 

@@ -109,9 +109,11 @@ interface
 
 uses
   SysUtils, Classes,
-  IdContext, IdHTTPServer, IdCustomHTTPServer, IdSocketHandle, IdHTTP, IdSSLOpenSSL,
-  IdOpenSSLIOHandlerClient, IdOpenSSLVersion,
-  fsl_base, fsl_utilities, fsl_crypto, fsl_http, fsl_stream, fsl_json,
+  IdContext, IdHTTPServer, IdCustomHTTPServer, IdSocketHandle, IdHTTP, //IdSSLOpenSSL,
+  //IdOpenSSLIOHandlerClient, IdOpenSSLVersion,
+  fsl_base, fsl_utilities,
+  //fsl_crypto,
+  fsl_http, fsl_stream, fsl_json,
   fhir_objects, fhir_common, fhir_client;
 
 type
@@ -335,7 +337,7 @@ end;
 function getSmartOnFhirAuthTokenRequest(server : TRegisteredFHIRServer; request : String) : TClientAccessToken;
 var
   http: TIdHTTP;
-  ssl : TIdOpenSSLIOHandlerClient;
+//  ssl : TIdOpenSSLIOHandlerClient;
   post, resp : TBytesStream;
   json : TJSONObject;
   s : String;
@@ -350,11 +352,11 @@ begin
         http.Request.Username := server.clientid;
         http.Request.Password := server.clientsecret;
       end;
-      ssl := TIdOpenSSLIOHandlerClient.Create(Nil);
+//      ssl := TIdOpenSSLIOHandlerClient.Create(Nil);
       Try
-        http.IOHandler := ssl;
-        ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_2;
-        ssl.Options.VerifyServerCertificate := false;
+//        http.IOHandler := ssl;
+//        ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_2;
+//        ssl.Options.VerifyServerCertificate := false;
         http.Request.ContentType := 'application/x-www-form-urlencoded; charset=UTF-8';
         resp := TBytesStream.create;
         try
@@ -377,7 +379,7 @@ begin
                   result.expires := now + StrToInt(s) * DATETIME_SECOND_ONE;
                 end;
                 if json.vStr['id_token'] <> '' then
-                  result.idToken := TJWTUtils.decodeJWT(json.vStr['id_token']);
+//                  result.idToken := TJWTUtils.decodeJWT(json.vStr['id_token']);
                 result.patient := json.vStr['patient'];
                 result.Link;
               finally
@@ -396,7 +398,7 @@ begin
           resp.free;
         end;
       finally
-        ssl.free;
+//        ssl.free;
       end;
     finally
       http.free;
@@ -794,7 +796,7 @@ begin
     jwt.expires := now + 1 * DATETIME_MINUTE_ONE;
     jwt.audience := server.tokenEndpoint;
     jwt.id := NewGuidId;
-    jwt_header := TJWTUtils.encodeJWT(jwt, jwt_hmac_rsa256, nil, server.privatekey, server.passphrase);
+    //jwt_header := TJWTUtils.encodeJWT(jwt, jwt_hmac_rsa256, nil, server.privatekey, server.passphrase);
   finally
     jwt.Free;
   end;

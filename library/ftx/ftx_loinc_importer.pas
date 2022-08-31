@@ -455,20 +455,20 @@ Const
   FLD_SURVEY_QUEST_TEXT =                     FLD_EXMPL_ANSWERS + 1;
   FLD_SURVEY_QUEST_SRC =                      FLD_SURVEY_QUEST_TEXT + 1;
   FLD_UNITSREQUIRED =                         FLD_SURVEY_QUEST_SRC + 1;
-  FLD_SUBMITTED_UNITS =                       FLD_UNITSREQUIRED + 1;
-  FLD_RELATEDNAMES2 =                         FLD_SUBMITTED_UNITS + 1;
+//  FLD_SUBMITTED_UNITS =                       FLD_UNITSREQUIRED + 1; removed in 2.73
+  FLD_RELATEDNAMES2 =                         FLD_UNITSREQUIRED + 1;
   FLD_SHORTNAME =                             FLD_RELATEDNAMES2 + 1;
   FLD_ORDER_OBS =                             FLD_SHORTNAME + 1;
-  FLD_CDISC_COMMON_TESTS =                    FLD_ORDER_OBS + 1;
-  FLD_HL7_FIELD_SUBFIELD_ID =                 FLD_CDISC_COMMON_TESTS + 1;
+//  FLD_CDISC_COMMON_TESTS =                    FLD_ORDER_OBS + 1; removed in 2.73
+  FLD_HL7_FIELD_SUBFIELD_ID =                 FLD_ORDER_OBS + 1;
   FLD_EXTERNAL_COPYRIGHT_NOTICE =             FLD_HL7_FIELD_SUBFIELD_ID + 1;
   FLD_EXAMPLE_UNITS =                         FLD_EXTERNAL_COPYRIGHT_NOTICE + 1;
   FLD_LONG_COMMON_NAME =                      FLD_EXAMPLE_UNITS + 1;
-  FLD_UnitsAndRange =                         FLD_LONG_COMMON_NAME + 1;
+//  FLD_UnitsAndRange =                         FLD_LONG_COMMON_NAME + 1; removed in 2.73
 //  FLD_DOCUMENT_SECTION =                      FLD_UnitsAndRange + 1;
-  FLD_EXAMPLE_UCUM_UNITS =                    FLD_UnitsAndRange + 1;
-  FLD_EXAMPLE_SI_UCUM_UNITS =                 FLD_EXAMPLE_UCUM_UNITS + 1;
-  FLD_STATUS_REASON =                         FLD_EXAMPLE_SI_UCUM_UNITS + 1;
+  FLD_EXAMPLE_UCUM_UNITS =                    FLD_LONG_COMMON_NAME + 1;
+//  FLD_EXAMPLE_SI_UCUM_UNITS =                 FLD_EXAMPLE_UCUM_UNITS + 1; removed in 2.73
+  FLD_STATUS_REASON =                         FLD_EXAMPLE_UCUM_UNITS + 1;
   FLD_STATUS_TEXT =                           FLD_STATUS_REASON + 1;
   FLD_CHANGE_REASON_PUBLIC =                  FLD_STATUS_TEXT + 1;
   FLD_COMMON_TEST_RANK =                      FLD_CHANGE_REASON_PUBLIC + 1;
@@ -728,11 +728,11 @@ begin
     oCodes.SortedByCode;
 
     // now, process the multi-axial file
-    if FileExists(IncludeTrailingPathDelimiter(folder) + 'MultiAxialHierarchy.csv') then
+    if FileExists(IncludeTrailingPathDelimiter(folder) + 'ComponentHierarchyBySystem.csv') then
     begin
-      Progress(3,0,'Loading Multi-Axial Source');
+      Progress(3,0,'Loading ComponentHierarchyBySystem Source');
       oHeirarchy.SortedByCode;
-      AssignFile(ma, IncludeTrailingPathDelimiter(folder) + 'MultiAxialHierarchy.csv');
+      AssignFile(ma, IncludeTrailingPathDelimiter(folder) + 'ComponentHierarchyBySystem.csv');
       Reset(ma);
       Readln(ma, ln); // skip header
 
@@ -831,7 +831,7 @@ begin
     result := FConcepts.AddConcept(AddDescription(0, 'LOINC Definitions'), false, FRefs.AddRefs(aConcepts), 0);
     FCode.donebuild;
 
-    Progress(7, 0, 'Storing Heirachy');
+    Progress(7, 0, 'Storing Hierachy');
     FEntries.StartBuild;
     iCount := 0;
     SetLength(roots, 0);

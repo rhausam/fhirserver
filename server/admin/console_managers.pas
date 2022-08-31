@@ -39,13 +39,16 @@ uses
   fdb_manager,
   fhir_colour_utils,
   ftx_sct_services, ftx_loinc_services, ftx_ucum_services, ftx_lang,
-  fui_lcl_managers, fui_lcl_progress,
+  //fui_lcl_managers, fui_lcl_progress,
   tx_ndc, tx_rxnorm, tx_unii,
   server_config, database_installer, utilities,
-  console_tx_edit, console_ep_edit, console_id_edit, install_form;
+  console_tx_edit; //,
+  //console_ep_edit, console_id_edit,
+  //install_form;
 
 type
 
+(*
   { TAdminManager }
 
   TAdminManager = class abstract (TListManager<TFHIRServerConfigSection>)
@@ -56,6 +59,7 @@ type
     destructor Destroy; override;
     property configFile : TFHIRServerConfigFile read FFile write SetFile;
   end;
+*)
 
   { TTXStatusCheckRequest }
 
@@ -90,6 +94,7 @@ type
     function name : String; override;
   end;
 
+(*
   { TTXManager }
 
   TTXManager = class (TAdminManager)
@@ -120,6 +125,7 @@ type
     function deleteItem(item : TFHIRServerConfigSection) : boolean; override;
     function executeItem(item : TFHIRServerConfigSection; mode : String) : boolean; override;
   end;
+*)
 
   { TEPStatusCheckRequest }
 
@@ -155,6 +161,7 @@ type
     function name : String; override;
   end;
 
+(*
   { TEndPointManager }
 
   TEndPointManager = class (TAdminManager)
@@ -198,7 +205,7 @@ type
     function addItem(mode : String) : TFHIRServerConfigSection; override;
     function deleteItem(item : TFHIRServerConfigSection) : boolean; override;
   end;
-
+*)
 
 implementation
 
@@ -357,6 +364,7 @@ begin
   result := '';
 end;
 
+(*
 { TAdminManager }
 
 procedure TAdminManager.SetFile(value: TFHIRServerConfigFile);
@@ -878,7 +886,7 @@ begin
   else
     raise EFslException.Create('Not done yet');
 end;
-
+*)
 
 end.
 

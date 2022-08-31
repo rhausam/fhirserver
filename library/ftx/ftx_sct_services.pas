@@ -57,7 +57,7 @@ The content loads and works extremely quickly.
 }
 
 Uses
-  SysUtils, Classes, Generics.Collections, Character,
+  SysUtils, Classes, Generics.Collections, Character, Dialogs,
   fsl_base, fsl_utilities, fsl_collections, fsl_http, fsl_fpc, fsl_threads, fsl_lang,
   fhir_objects, fhir_common, fhir_factory, fhir_utilities, fhir_features, fhir_uris,
   fhir_cdshooks,
@@ -822,7 +822,7 @@ begin
   if FIsUTF16 then
     result := memU16ToString(FMaster, iIndex+2, i)
   else
-  result := memU8ToString(FMaster, iIndex+2, i)
+    result := memU8ToString(FMaster, iIndex+2, i)
 end;
 
 procedure TSnomedStrings.Reopen;

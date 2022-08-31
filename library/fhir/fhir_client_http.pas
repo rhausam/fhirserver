@@ -36,7 +36,7 @@ uses
   SysUtils, Classes,
   fsl_base, fsl_utilities, fsl_stream, fsl_json,
   IdHTTP, IdComponent,
-  IdOpenSSLIOHandlerClient, IdOpenSSLVersion,
+  //IdOpenSSLIOHandlerClient, IdOpenSSLVersion,
   {$IFNDEF FPC}fsl_wininet, {$ENDIF}
   fhir_objects, fhir_parser, fhir_common, fhir_client, 
   fhir_oauth;
@@ -60,7 +60,7 @@ type
     FBytesToTransfer: Int64;
 
     indy : TIdHTTP;
-    ssl : TIdOpenSSLIOHandlerClient;
+  //  ssl : TIdOpenSSLIOHandlerClient;
     {$IFNDEF FPC}
     http : TFslWinInetClient;
     {$ENDIF}
@@ -178,7 +178,7 @@ end;
 
 destructor TFHIRHTTPCommunicator.destroy;
 begin
-  ssl.Free;
+//  ssl.Free;
   indy.free;
   {$IFNDEF FPC}
   http.Free;
@@ -346,19 +346,19 @@ begin
           raise EFHIRException.create('Unable to process proxy "'+proxy+'" - use address:port');
         end;
       end;
-      ssl := TIdOpenSSLIOHandlerClient.Create(nil);
-      indy.IOHandler := ssl;
-      ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_2;
-      ssl.Options.VerifyServerCertificate := false;
+//      ssl := TIdOpenSSLIOHandlerClient.Create(nil);
+//      indy.IOHandler := ssl;
+//      ssl.Options.TLSVersionMinimum := TIdOpenSSLVersion.TLSv1_2;
+//      ssl.Options.VerifyServerCertificate := false;
 
       if certFile <> '' then
       begin
-        ssl.Options.CertFile := certFile;
+//        ssl.Options.CertFile := certFile;
         if certKey <> '' then
-          ssl.Options.CertKey := certKey
+//          ssl.Options.CertKey := certKey
         else
-          ssl.Options.CertKey := ChangeFileExt(certFile,'.key');
-        ssl.Options.OnGetPassword := getSSLpassword;
+//          ssl.Options.CertKey := ChangeFileExt(certFile,'.key');
+//        ssl.Options.OnGetPassword := getSSLpassword;
       end;
     end;
   end

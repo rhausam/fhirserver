@@ -33,7 +33,7 @@ POSSIBILITY OF SUCH DAMAGE.
 interface
 
 uses
-  Process,
+  dprocess,
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, Buttons, ComCtrls,
   ExtCtrls, StdCtrls,
   fsl_base, fsl_threads, fsl_utilities;
