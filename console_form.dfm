@@ -2380,8 +2380,8 @@ object MainConsoleForm: TMainConsoleForm
               object lblDoco: TLabel
                 Left = 11
                 Top = 11
-                Width = 3
-                Height = 13
+                Width = 1217
+                Height = 23
                 Align = alClient
                 Font.Charset = DEFAULT_CHARSET
                 Font.Color = clWindowText
@@ -2390,6 +2390,8 @@ object MainConsoleForm: TMainConsoleForm
                 Font.Style = []
                 ParentFont = False
                 WordWrap = True
+                ExplicitWidth = 3
+                ExplicitHeight = 13
               end
             end
           end

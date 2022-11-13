@@ -2415,14 +2415,13 @@ begin
     FIni.WriteInteger('snomed-import', 'edition', cbxEdition.ItemIndex);
     FIni.WriteInteger('snomed-import', 'date', trunc(edtDate.Date));
     FIni.WriteString('snomed-import', 'dest', edtDestination.text);
-    module := '900000000000207008'; //getSnomedModule;
-    nb := false; //needsBaseForImport(module);
+    module := getSnomedModule;
+    nb := needsBaseForImport(module);
     if nb and not FolderExists(edtBase.Text) then
       ShowMessage('Base Folder "'+edtSource.Text+'" not found')
     else
     begin
       version := FormatDateTime('yyyymmdd', edtDate.Date);
-      version := '20220731';
       FWantStop := false;
       btnSnomedImportStop.Visible := true;
       cursor := crHourGlass;
