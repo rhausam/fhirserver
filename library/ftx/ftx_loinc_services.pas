@@ -527,10 +527,6 @@ end;
 
 // the bytes contain UTF8
 function memU8toString(bytes : TBytes; index, chars : integer) : String;
-{$IFNDEF FPC}
-var
-  utf8str: UTF8String;
-{$ENDIF}
 begin
   if chars = 0 then
     exit('');
@@ -540,10 +536,7 @@ begin
   setLength(result, chars);
   Move(bytes[index], result[1], chars);
   {$ELSE}
-//  result := TEncoding.UTF8.GetString(bytes, index, chars);
-  setLength(utf8str, chars);
-  Move(bytes[index], utf8str[1], chars);
-  result := utf8str;
+  result := TEncoding.UTF8.GetString(bytes, index, chars);
   {$ENDIF}
 end;
 
