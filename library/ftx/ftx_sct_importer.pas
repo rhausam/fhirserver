@@ -764,7 +764,6 @@ var
   iFlag, lang : Byte;
   wc : TWordCache;
   sc : TStemCache;
-  fname : String;
   Function Next(ch : byte) : integer;
   begin
     inc(iCursor);
@@ -778,8 +777,6 @@ begin
   aIndexLength := 0;
   for fi := 0 to DescriptionFiles.Count - 1 do
   begin
-    fname:= RightStr(DescriptionFiles[fi],Length(DescriptionFiles[fi]) - LastDelimiter('\',DescriptionFiles[fi]));
-    Progress(STEP_READ_DESC, 0, 'Read Description Files ' + fname);
     s := LoadFile(DescriptionFiles[fi]);
     iCursor := -1;
     iCursor := Next(13) + 2;
@@ -843,7 +840,7 @@ begin
       inc(OverallCount);
 
       if OverallCount mod UPDATE_FREQ_D = 0 then
-        Progress(STEP_READ_DESC, iCursor / len, 'Read Description Files '  + fname + ' ' + pct(iCursor, len));
+        Progress(STEP_READ_DESC, iCursor / len, 'Read Description Files ' + pct(iCursor, len));
     End;
   end;
   Progress(STEP_SORT_DESC, 0, 'Sort Descriptions');
