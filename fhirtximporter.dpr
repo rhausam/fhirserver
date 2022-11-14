@@ -1,4 +1,4 @@
-program fhirconsole;
+program fhirtximporter;
 
 uses
   FastMM4 in 'dependencies\FMM\FastMM4.pas',

@@ -118,110 +118,6 @@ type
   { TMainConsoleForm }
 
   TMainConsoleForm = class(TForm)
-    BitBtn1: TBitBtn;
-    btnCacheInfo: TButton;
-    btnCardKey: TSpeedButton;
-    btnCardKey1: TSpeedButton;
-    btnCertificatesFolder: TSpeedButton;
-    btnImportUNII: TBitBtn;
-    btnImportUNIIStop: TBitBtn;
-    btnLockStatus: TButton;
-    btnReIndexRxNorm: TBitBtn;
-    btnLangFile: TSpeedButton;
-    btnImportNDC: TBitBtn;
-    btnReindexRxNormStop: TBitBtn;
-    btnImportNDCStop: TBitBtn;
-    btnTestUNII: TBitBtn;
-    btnTextRxNorm: TBitBtn;
-    btnTestNDC: TBitBtn;
-    btnTxImport: TBitBtn;
-    btnIDAdd: TBitBtn;
-    btnIDDelete: TBitBtn;
-    btnTxAdd: TBitBtn;
-    btnEPAdd: TBitBtn;
-    btnTxDelete: TBitBtn;
-    btnAddEdition: TSpeedButton;
-    btnBase: TSpeedButton;
-    btnCombinedDestination: TSpeedButton;
-    btnCombinedStore: TSpeedButton;
-    btnCombineGo: TBitBtn;
-    btnDeleteEdition: TSpeedButton;
-    btnDestination: TSpeedButton;
-    btnFetchObjects: TButton;
-    btnFetchObjectsPlus: TButton;
-    btnImportLoinc: TBitBtn;
-    btnImportSnomed: TBitBtn;
-    btnInternational: TSpeedButton;
-    btnLoincDest: TSpeedButton;
-    btnLoincImportStop: TBitBtn;
-    btnLoincSource: TSpeedButton;
-    btnSnomedImportStop: TBitBtn;
-    btnSource: TSpeedButton;
-    btnStopCombine: TBitBtn;
-    btnEPDelete: TBitBtn;
-    btnEPInstall: TBitBtn;
-    btnFetchThreads: TButton;
-    btnClearCache: TButton;
-    cbxEdition: TComboBox;
-    cbxUNIIDriver: TComboBox;
-    cbxRXNDriver: TComboBox;
-    cbxNDCDriver: TComboBox;
-    chkCaching: TCheckBox;
-    chkWebMode: TCheckBox;
-    edtCacheTime: TEdit;
-    edtCACert: TEdit;
-    edtCertificatesFolder: TEdit;
-    edtCardPublic: TEdit;
-    edtConfigFile: TEdit;
-    edtBase: TEdit;
-    edtCombinedDestination: TEdit;
-    edtCombinedStore: TEdit;
-    edtDate: TDateTimePicker;
-    edtDestination: TEdit;
-    edtAdminSCIMSalt: TEdit;
-    edtGoogleId: TEdit;
-    edtLangFile: TEdit;
-    edtInternational: TEdit;
-    edtLoincDate: TEdit;
-    edtLoincDest: TEdit;
-    edtLoincSource: TEdit;
-    edtLoincVersion: TEdit;
-    edtNDCSQLiteFile: TEdit;
-    edtRProxySSLHeader: TEdit;
-    edtRXNSQLiteFile: TEdit;
-    edtRProxySSLPort: TEdit;
-    edtRProxyCertHeader: TEdit;
-    edtUNIIDBName: TEdit;
-    edtUNIIFile: TEdit;
-    edtUNIISQLiteFile: TEdit;
-    edtUNIIVersion: TEdit;
-    edtUNIIPassword: TEdit;
-    edtUNIIServer: TEdit;
-    edtUNIIUsername: TEdit;
-    edtPrivateKey: TEdit;
-    edtRXNDBName: TEdit;
-    edtNDCDBName: TEdit;
-    edtNDCFolder: TEdit;
-    edtRXNPassword: TEdit;
-    edtNDCPassword: TEdit;
-    edtRXNServer: TEdit;
-    edtRXNFolder: TEdit;
-    edtNDCServer: TEdit;
-    edtRXNUsername: TEdit;
-    edtNDCUsername: TEdit;
-    edtSource: TEdit;
-    edtSSLCert: TEdit;
-    edtSSLPassword: TEdit;
-    edtSSLPort: TEdit;
-    edtHostName: TEdit;
-    edtCardPrivate: TEdit;
-    edtTelnetPassword: TEdit;
-    edtWebPort: TEdit;
-    edtWebMaxConnections: TEdit;
-    edtAdminEmail: TEdit;
-    edtAdminOrganization: TEdit;
-    edtAdminSMS: TEdit;
-    edtRProxyPort: TEdit;
     FileNewAction: TAction;
     ActionList1: TActionList;
     EditCopy1: TEditCopy;
@@ -230,140 +126,13 @@ type
     EditPaste1: TEditPaste;
     EditSelectAll1: TEditSelectAll;
     EditUndo1: TEditUndo;
-    edtFilter: TEdit;
     FileExit1: TFileExit;
     FileOpenAction: TFileOpen;
     FileSaveAs1: TFileSaveAs;
     fd: TFontDialog;
-    GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
-    GroupBox3: TGroupBox;
-    GroupBox4: TGroupBox;
-    GroupBox5: TGroupBox;
-    GroupBox6: TGroupBox;
-    GroupBox7: TGroupBox;
-    GroupBox8: TGroupBox;
-    GroupBox9: TGroupBox;
     HelpContents1: THelpContents;
-    Image2: TImage;
-    Image3: TImage;
-    Image4: TImage;
-    Image5: TImage;
-    Image6: TImage;
-    Image7: TImage;
     ImageList1: TImageList;
-    Label1: TLabel;
-    Label11: TLabel;
-    Label16: TLabel;
-    Label20: TLabel;
-    Label21: TLabel;
-    Label27: TLabel;
-    Label37: TLabel;
-    Label38: TLabel;
-    Label42: TLabel;
-    Label43: TLabel;
-    Label44: TLabel;
-    Label45: TLabel;
-    Label46: TLabel;
-    Label47: TLabel;
-    Label48: TLabel;
-    Label49: TLabel;
-    Label50: TLabel;
-    Label51: TLabel;
-    Label52: TLabel;
-    Label53: TLabel;
-    Label54: TLabel;
-    Label55: TLabel;
-    Label56: TLabel;
-    Label57: TLabel;
-    Label58: TLabel;
-    Label59: TLabel;
-    Label60: TLabel;
-    Label61: TLabel;
-    Label62: TLabel;
-    Label63: TLabel;
-    Label64: TLabel;
-    Label65: TLabel;
-    Label66: TLabel;
-    Label67: TLabel;
-    Label68: TLabel;
-    Label69: TLabel;
-    Label70: TLabel;
-    Label71: TLabel;
-    Label72: TLabel;
-    Label73: TLabel;
-    Label74: TLabel;
-    Label75: TLabel;
-    Label76: TLabel;
-    Label77: TLabel;
-    Label78: TLabel;
-    Label79: TLabel;
-    Label8: TLabel;
-    Label80: TLabel;
-    Label81: TLabel;
-    Label9: TLabel;
-    lblDoco: TLabel;
-    Label10: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
-    Label2: TLabel;
-    Label22: TLabel;
-    Label23: TLabel;
-    Label24: TLabel;
-    Label25: TLabel;
-    Label26: TLabel;
-    Label28: TLabel;
-    Label29: TLabel;
-    Label3: TLabel;
-    Label30: TLabel;
-    Label31: TLabel;
-    Label32: TLabel;
-    Label33: TLabel;
-    Label34: TLabel;
-    Label35: TLabel;
-    Label36: TLabel;
-    Label39: TLabel;
-    Label4: TLabel;
-    Label40: TLabel;
-    Label41: TLabel;
-    lblUNIIAction: TLabel;
-    lblUNIIAmount: TLabel;
-    lblRxNormAction: TLabel;
-    lblNDCAction: TLabel;
-    lblRxNormAmount: TLabel;
-    lblNDCAmount: TLabel;
-    lblSomething: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    lbEditions: TListBox;
-    lblCombineAction: TLabel;
-    lblCombineAmount: TLabel;
-    lblLoincAction: TLabel;
-    lblLoincAmount: TLabel;
-    lblSCTAction: TLabel;
-    lblSCTAmount: TLabel;
-    lvPackages: TListView;
-    lvID: TListView;
-    lvTx: TListView;
-    lvEP: TListView;
     MainMenu1: TMainMenu;
-    mConsole: TMemo;
-    MenuItem10: TMenuItem;
-    MenuItem11: TMenuItem;
-    MenuItem2: TMenuItem;
-    MenuItem3: TMenuItem;
-    MenuItem4: TMenuItem;
-    MenuItem7: TMenuItem;
-    MenuItem8: TMenuItem;
-    MenuItem9: TMenuItem;
-    N1: TMenuItem;
-    mThreads: TMemo;
     MenuItem1: TMenuItem;
     MenuItem17: TMenuItem;
     MenuItem33: TMenuItem;
@@ -371,123 +140,106 @@ type
     MenuItem37: TMenuItem;
     MenuItem5: TMenuItem;
     MenuItem6: TMenuItem;
-    mStats: TMemo;
     N4: TMenuItem;
     N8: TMenuItem;
     dlgOpen: TOpenDialog;
     dlgConfig: TOpenDialog;
-    Panel19: TPanel;
-    Panel26: TPanel;
-    Panel27: TPanel;
-    Panel28: TPanel;
-    Panel31: TPanel;
-    Panel32: TPanel;
-    Panel34: TPanel;
-    Panel36: TPanel;
-    Panel40: TPanel;
-    Panel41: TPanel;
-    Panel42: TPanel;
-    Panel43: TPanel;
-    Panel44: TPanel;
-    Panel45: TPanel;
-    Panel46: TPanel;
-    Panel47: TPanel;
-    Panel48: TPanel;
-    Panel49: TPanel;
-    Panel50: TPanel;
-    Panel51: TPanel;
-    Panel52: TPanel;
-    Panel53: TPanel;
-    pgMain: TPageControl;
-    pgManage: TPageControl;
-    Panel1: TPanel;
-    Panel17: TPanel;
-    Panel18: TPanel;
-    Panel29: TPanel;
-    Panel30: TPanel;
-    Panel33: TPanel;
-    Panel35: TPanel;
-    Panel37: TPanel;
-    Panel38: TPanel;
-    Panel39: TPanel;
-    pgTerminologies: TPageControl;
-    Panel10: TPanel;
-    Panel11: TPanel;
-    Panel12: TPanel;
-    Panel13: TPanel;
-    Panel14: TPanel;
-    Panel15: TPanel;
-    Panel16: TPanel;
-    Panel2: TPanel;
-    Panel20: TPanel;
-    Panel21: TPanel;
-    Panel22: TPanel;
-    Panel23: TPanel;
-    Panel24: TPanel;
-    Panel25: TPanel;
     Panel3: TPanel;
-    Panel4: TPanel;
-    Panel5: TPanel;
-    Panel6: TPanel;
-    Panel7: TPanel;
-    Panel8: TPanel;
-    Panel9: TPanel;
-    pnlCombineSnomed: TPanel;
-    pnlLoincImport: TPanel;
-    pnlProcessUNII: TPanel;
-    pnlProcessRXN: TPanel;
-    pnlProcessNDC: TPanel;
-    pnlSnomedImport: TPanel;
-    prgCombine: TProgressBar;
-    prgLoincImport: TProgressBar;
-    prgUNIIImport: TProgressBar;
-    prgRxNormImport: TProgressBar;
-    prgNDCImport: TProgressBar;
-    prgSnomedImport: TProgressBar;
     //dlgFolder: TSelectDirectoryDialog;
     dlgSave: TSaveDialog;
-    rbNDCSQLite: TRadioButton;
-    rbRXNSQLite: TRadioButton;
-    rbUNIIMSSQL: TRadioButton;
-    rbUNIIMySQL: TRadioButton;
-    rbRXNMSSQL: TRadioButton;
-    rbNDCMSSQL: TRadioButton;
-    rbRXNMySQL: TRadioButton;
-    rbNDCMySQL: TRadioButton;
-    rbUNIISQLite: TRadioButton;
     sBar: TStatusBar;
-    btnCert: TSpeedButton;
-    btnCACert: TSpeedButton;
-    btnCertKey: TSpeedButton;
-    Splitter1: TSplitter;
     Splitter2: TSplitter;
     Splitter3: TSplitter;
-    Splitter4: TSplitter;
-    Splitter5: TSplitter;
-    TabSheet1: TTabSheet;
-    tbUnii: TTabSheet;
-    tbNDC: TTabSheet;
-    tbRxNorm: TTabSheet;
-    tbGeneral: TTabSheet;
-    tbWebSettings: TTabSheet;
-    tbUserAdmin: TTabSheet;
-    tbEndPoints: TTabSheet;
-    tbTermload: TTabSheet;
-    tbConsole: TTabSheet;
-    tbStatistics: TTabSheet;
-    tbManage: TTabSheet;
-    tbTerminologies: TTabSheet;
-    tbThreads: TTabSheet;
-    tbSnomed: TTabSheet;
-    tbSnomedCombine: TTabSheet;
-    tbLoinc: TTabSheet;
     Timer1: TTimer;
-    ToolBar1: TToolBar;
-    ToolButton1: TToolButton;
-    ToolButton2: TToolButton;
-    btnCopyConsole: TToolButton;
-    btnConsoleFont: TToolButton;
-    procedure BitBtn1Click(Sender: TObject);
+    pgMain: TPageControl;
+    tbTerminologies: TTabSheet;
+    Panel2: TPanel;
+    pnlLoincImport: TPanel;
+    Image2: TImage;
+    Label26: TLabel;
+    pnlCombineSnomed: TPanel;
+    Image3: TImage;
+    Label25: TLabel;
+    pnlSnomedImport: TPanel;
+    Image4: TImage;
+    Label24: TLabel;
+    pgTerminologies: TPageControl;
+    tbSnomed: TTabSheet;
+    Panel4: TPanel;
+    Panel6: TPanel;
+    btnImportSnomed: TBitBtn;
+    btnSnomedImportStop: TBitBtn;
+    Panel7: TPanel;
+    lblSCTAmount: TLabel;
+    lblSCTAction: TLabel;
+    prgSnomedImport: TProgressBar;
+    Panel8: TPanel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    btnSource: TSpeedButton;
+    btnDestination: TSpeedButton;
+    Label23: TLabel;
+    btnBase: TSpeedButton;
+    edtSource: TEdit;
+    cbxEdition: TComboBox;
+    edtDate: TDateTimePicker;
+    edtDestination: TEdit;
+    edtBase: TEdit;
+    Panel9: TPanel;
+    Panel10: TPanel;
+    Label6: TLabel;
+    tbSnomedCombine: TTabSheet;
+    Panel20: TPanel;
+    btnCombineGo: TBitBtn;
+    btnStopCombine: TBitBtn;
+    Panel21: TPanel;
+    lblCombineAmount: TLabel;
+    lblCombineAction: TLabel;
+    prgCombine: TProgressBar;
+    Panel22: TPanel;
+    Panel23: TPanel;
+    Label17: TLabel;
+    Panel24: TPanel;
+    Panel25: TPanel;
+    Label18: TLabel;
+    Label19: TLabel;
+    btnInternational: TSpeedButton;
+    btnAddEdition: TSpeedButton;
+    btnDeleteEdition: TSpeedButton;
+    Label14: TLabel;
+    btnCombinedDestination: TSpeedButton;
+    Label15: TLabel;
+    btnCombinedStore: TSpeedButton;
+    edtInternational: TEdit;
+    lbEditions: TListBox;
+    edtCombinedDestination: TEdit;
+    edtCombinedStore: TEdit;
+    tbLoinc: TTabSheet;
+    Panel11: TPanel;
+    Panel12: TPanel;
+    Label7: TLabel;
+    Panel13: TPanel;
+    Panel14: TPanel;
+    lblLoincAmount: TLabel;
+    lblLoincAction: TLabel;
+    prgLoincImport: TProgressBar;
+    Panel15: TPanel;
+    btnImportLoinc: TBitBtn;
+    btnLoincImportStop: TBitBtn;
+    Panel16: TPanel;
+    Label10: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    btnLoincSource: TSpeedButton;
+    btnLoincDest: TSpeedButton;
+    Label22: TLabel;
+    edtLoincSource: TEdit;
+    edtLoincDest: TEdit;
+    edtLoincVersion: TEdit;
+    edtLoincDate: TEdit;
+    //procedure BitBtn1Click(Sender: TObject);
     procedure btnAddEditionClick(Sender: TObject);
     procedure btnBaseClick(Sender: TObject);
     procedure btnCACertClick(Sender: TObject);
@@ -501,8 +253,8 @@ type
     procedure btnCombinedDestinationClick(Sender: TObject);
     procedure btnCombinedStoreClick(Sender: TObject);
     procedure btnCombineGoClick(Sender: TObject);
-    procedure btnConsoleFontClick(Sender: TObject);
-    procedure btnCopyConsoleClick(Sender: TObject);
+    //procedure btnConsoleFontClick(Sender: TObject);
+    //procedure btnCopyConsoleClick(Sender: TObject);
     procedure btnDeleteEditionClick(Sender: TObject);
     procedure btnDestinationClick(Sender: TObject);
     procedure btnFetchObjectsClick(Sender: TObject);
@@ -517,7 +269,7 @@ type
     procedure btnImportLoincClick(Sender: TObject);
     procedure btnImportSnomedClick(Sender: TObject);
     procedure btnInternationalClick(Sender: TObject);
-    procedure btnLangFileClick(Sender: TObject);
+    //procedure btnLangFileClick(Sender: TObject);
     procedure btnLoincDestClick(Sender: TObject);
     procedure btnLoincImportStopClick(Sender: TObject);
     procedure btnLoincSourceClick(Sender: TObject);
@@ -528,9 +280,9 @@ type
     procedure btnUMLSStopClick(Sender: TObject);
     procedure btnFetchThreadsClick(Sender: TObject);
     procedure cbxEditionChange(Sender: TObject);
-    procedure chkCachingChange(Sender: TObject);
+    //procedure chkCachingChange(Sender: TObject);
     procedure edtCacheTimeChange(Sender: TObject);
-    procedure chkWebModeChange(Sender: TObject);
+    //procedure chkWebModeChange(Sender: TObject);
     procedure edtAdminEmailChange(Sender: TObject);
     procedure edtAdminOrganizationChange(Sender: TObject);
     procedure edtAdminSCIMSaltChange(Sender: TObject);
@@ -539,8 +291,8 @@ type
     procedure edtCardPrivateChange(Sender: TObject);
     procedure edtCardPublicChange(Sender: TObject);
     procedure edtCertificatesFolderChange(Sender: TObject);
-    procedure edtConfigFileChange(Sender: TObject);
-    procedure edtFilterChange(Sender: TObject);
+    //procedure edtConfigFileChange(Sender: TObject);
+    //procedure edtFilterChange(Sender: TObject);
     procedure edtGoogleIdChange(Sender: TObject);
     procedure edtHostNameChange(Sender: TObject);
     procedure edtLangFileChange(Sender: TObject);
@@ -573,11 +325,11 @@ type
     procedure MenuItem7Click(Sender: TObject);
     procedure pnlProcessNDCClick(Sender: TObject);
     procedure pnlProcessUNIIClick(Sender: TObject);
-    procedure rbNDCMSSQLClick(Sender: TObject);
-    procedure rbRXNMySQLClick(Sender: TObject);
-    procedure rbUNIISQLiteClick(Sender: TObject);
+    //procedure rbNDCMSSQLClick(Sender: TObject);
+    //procedure rbRXNMySQLClick(Sender: TObject);
+    //procedure rbUNIISQLiteClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure ToolButton1Click(Sender: TObject);
+    //procedure ToolButton1Click(Sender: TObject);
     procedure ToolButton3Click(Sender: TObject);
   private
     FLock : TFslLock;
@@ -620,18 +372,16 @@ type
     procedure sctCallback(pct: Integer; action: String);
     procedure cmbCallback(pct: Integer; action: String);
     procedure loincCallback(pct: Integer; action: String);
-    procedure rxNormCallback(sender : TObject; pct : integer; done : boolean; desc : String);
-    procedure ndcCallback(sender : TObject; pct : integer; done : boolean; desc : String);
-    procedure uniiCallback(sender : TObject; pct : integer; done : boolean; desc : String);
+    //procedure rxNormCallback(sender : TObject; pct : integer; done : boolean; desc : String);
+    //procedure ndcCallback(sender : TObject; pct : integer; done : boolean; desc : String);
+    //procedure uniiCallback(sender : TObject; pct : integer; done : boolean; desc : String);
     Procedure SetUpTerminologyPage;
     function getSnomedModule: String;
     (*
     procedure connectToServer(server : String);
     procedure GetODBCDriversList(list : TStrings);
-    *)
     procedure SetConfigEditable;
     procedure SetConfigReadonly;
-    (*
     procedure EPFocusChange(sender : TObject);
     procedure updateDoco;
     *)
@@ -924,9 +674,9 @@ begin
   pnlLoincImport.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlSnomedImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
-  pnlProcessRXN.color := clWhite;
-  pnlProcessNDC.Color := clWhite;
-  pnlProcessUNII.Color := clWhite;
+  //pnlProcessRXN.color := clWhite;
+  //pnlProcessNDC.Color := clWhite;
+  //pnlProcessUNII.Color := clWhite;
   pgTerminologies.ActivePageIndex := 2;
 end;
 
@@ -937,9 +687,9 @@ begin
   pnlCombineSnomed.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlLoincImport.color := clWhite;
   pnlSnomedImport.color := clWhite;
-  pnlProcessRXN.color := clWhite;
-  pnlProcessNDC.Color := clWhite;
-  pnlProcessUNII.Color := clWhite;
+  //pnlProcessRXN.color := clWhite;
+  //pnlProcessNDC.Color := clWhite;
+  //pnlProcessUNII.Color := clWhite;
   pgTerminologies.ActivePageIndex := 1;
 end;
 
@@ -950,9 +700,9 @@ begin
   pnlSnomedImport.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlLoincImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
-  pnlProcessRXN.color := clWhite;
-  pnlProcessNDC.Color := clWhite;
-  pnlProcessUNII.Color := clWhite;
+  //pnlProcessRXN.color := clWhite;
+  //pnlProcessNDC.Color := clWhite;
+  //pnlProcessUNII.Color := clWhite;
   pgTerminologies.ActivePageIndex := 0;
 end;
 
@@ -960,9 +710,9 @@ procedure TMainConsoleForm.Image5Click(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlProcessRXN.Color := $D9F0F7; //rgb(217, 240, 247);
-  pnlProcessNDC.Color := clWhite;
-  pnlProcessUNII.Color := clWhite;
+  //pnlProcessRXN.Color := $D9F0F7; //rgb(217, 240, 247);
+  //pnlProcessNDC.Color := clWhite;
+  //pnlProcessUNII.Color := clWhite;
   pnlLoincImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
   pnlSnomedImport.color := clWhite;
@@ -1136,6 +886,7 @@ Begin
 end;
 *)
 
+(*
 procedure TMainConsoleForm.SetConfigEditable;
 begin
   if (FConfig <> nil) and (FConfig.filename = edtConfigFile.text) then
@@ -1206,7 +957,9 @@ begin
     FLoading := false;
   end;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.SetConfigReadonly;
 begin
   FConfig.Free;
@@ -1272,6 +1025,7 @@ begin
     FLoading := false;
   end;
 end;
+*)
 
 (*
 function matchesVersion(ep, pi, piv : String):boolean;
@@ -1409,9 +1163,9 @@ procedure TMainConsoleForm.pnlProcessNDCClick(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlProcessNDC.Color := $D9F0F7; //rgb(217, 240, 247);
-  pnlProcessUNII.Color := clWhite;
-  pnlProcessRXN.Color := clWhite;
+  //pnlProcessNDC.Color := $D9F0F7; //rgb(217, 240, 247);
+  //pnlProcessUNII.Color := clWhite;
+  //pnlProcessRXN.Color := clWhite;
   pnlLoincImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
   pnlSnomedImport.color := clWhite;
@@ -1422,25 +1176,28 @@ procedure TMainConsoleForm.pnlProcessUNIIClick(Sender: TObject);
 begin
   if FRunning then
     exit;
-  pnlProcessUNII.Color := $D9F0F7; //rgb(217, 240, 247);
-  pnlProcessNDC.Color := clWhite;
-  pnlProcessRXN.Color := clWhite;
+  //pnlProcessUNII.Color := $D9F0F7; //rgb(217, 240, 247);
+  //pnlProcessNDC.Color := clWhite;
+  //pnlProcessRXN.Color := clWhite;
   pnlLoincImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
   pnlSnomedImport.color := clWhite;
   pgTerminologies.ActivePageIndex := 5;
 end;
 
+(*
 procedure TMainConsoleForm.rbNDCMSSQLClick(Sender: TObject);
 begin
-  cbxNDCDriver.enabled := not rbNDCSQLite.Checked;
-  edtNDCServer.enabled := not rbNDCSQLite.Checked;
-  edtNDCDBName.enabled := not rbNDCSQLite.Checked;
-  edtNDCPassword.enabled := not rbNDCSQLite.Checked;
-  edtNDCUsername.enabled := not rbNDCSQLite.Checked;
-  edtNDCSQLiteFile.enabled := rbNDCSQLite.Checked;
+  //cbxNDCDriver.enabled := not rbNDCSQLite.Checked;
+  //edtNDCServer.enabled := not rbNDCSQLite.Checked;
+  //edtNDCDBName.enabled := not rbNDCSQLite.Checked;
+  //edtNDCPassword.enabled := not rbNDCSQLite.Checked;
+  //edtNDCUsername.enabled := not rbNDCSQLite.Checked;
+  //edtNDCSQLiteFile.enabled := rbNDCSQLite.Checked;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.rbRXNMySQLClick(Sender: TObject);
 begin
   cbxRXNDriver.enabled := not rbRXNSQLite.Checked;
@@ -1450,7 +1207,9 @@ begin
   edtRXNUsername.enabled := not rbRXNSQLite.Checked;
   edtRXNSQLiteFile.enabled := rbRXNSQLite.Checked;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.rbUNIISQLiteClick(Sender: TObject);
 begin
   cbxUNIIDriver.enabled := not rbUNIISQLite.Checked;
@@ -1460,7 +1219,9 @@ begin
   edtUNIIUsername.enabled := not rbUNIISQLite.Checked;
   edtUNIISQLiteFile.enabled := rbUNIISQLite.Checked;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.edtFilterChange(Sender: TObject);
 var
   s : String;
@@ -1475,11 +1236,12 @@ begin
       if passesFilter(s) then
         mConsole.Lines.add(s);
         *)
-  finally
+(*  finally
     mConsole.Lines.EndUpdate;
   end;
   mConsole.SelStart := mConsole.Lines.Text.Length;
 end;
+*)
 
 procedure TMainConsoleForm.edtGoogleIdChange(Sender: TObject);
 begin
@@ -1856,6 +1618,7 @@ begin
 *)
 end;
 
+(*
 procedure TMainConsoleForm.btnConsoleFontClick(Sender: TObject);
 begin
   fd.font.Assign(mConsole.font);
@@ -1865,11 +1628,14 @@ begin
 //    writeFontToIni(FIni, 'font', mConsole.font);
   end;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.btnCopyConsoleClick(Sender: TObject);
 begin
   mConsole.CopyToClipboard;
 end;
+*)
 
 procedure TMainConsoleForm.btnDeleteEditionClick(Sender: TObject);
 begin
@@ -1888,6 +1654,7 @@ begin
   end;
 end;
 
+(*
 procedure TMainConsoleForm.BitBtn1Click(Sender: TObject);
 begin
   dlgConfig.FileName := edtConfigFile.text;
@@ -1897,6 +1664,7 @@ begin
     FIni.WriteString('config', 'filename', edtConfigFile.text);
   end;
 end;
+*)
 
 procedure TMainConsoleForm.btnDestinationClick(Sender: TObject);
 begin
@@ -2465,12 +2233,14 @@ begin
      edtInternational.text := dlgOpen.filename;
 end;
 
+(*
 procedure TMainConsoleForm.btnLangFileClick(Sender: TObject);
 begin
   dlgOpen.filename := edtLangFile.text;
   if dlgOpen.Execute then;
     edtLangFile.text := dlgOpen.filename;
 end;
+*)
 
 procedure TMainConsoleForm.btnLoincDestClick(Sender: TObject);
 begin
@@ -2591,6 +2361,7 @@ begin
   btnBase.Enabled := b;
 end;
 
+(*
 procedure TMainConsoleForm.chkCachingChange(Sender: TObject);
 begin
   if not FLoading then
@@ -2602,7 +2373,9 @@ begin
 //    FConfig.save;
   end;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.chkWebModeChange(Sender: TObject);
 begin
   if not FLoading then
@@ -2614,6 +2387,7 @@ begin
 //    FConfig.save;
   end;
 end;
+*)
 
 procedure TMainConsoleForm.edtAdminEmailChange(Sender: TObject);
 begin
@@ -2687,13 +2461,14 @@ begin
   end;
 end;
 
+(*
 procedure TMainConsoleForm.edtConfigFileChange(Sender: TObject);
 begin
   if (edtConfigFile.text <> '') and FileExists(edtConfigFile.text) then
   begin
     edtConfigFile.Color := clWhite;
     try
-      SetConfigEditable;
+      //SetConfigEditable;
     except
       on e : Exception do
       begin
@@ -2705,9 +2480,10 @@ begin
   else
   begin
     edtConfigFile.Color := HTML_COLOUR_VALUES[hcSalmon];
-    SetConfigReadOnly;
+    //SetConfigReadOnly;
   end;
 end;
+*)
 
 procedure TMainConsoleForm.Timer1Timer(Sender: TObject);
 var
@@ -2824,10 +2600,12 @@ begin
   *)
   end;
 
+(*
 procedure TMainConsoleForm.ToolButton1Click(Sender: TObject);
 begin
   mConsole.lines.clear;
 end;
+*)
 
 procedure TMainConsoleForm.ToolButton3Click(Sender: TObject);
 begin
@@ -3024,6 +2802,7 @@ begin
     abort;
 end;
 
+(*
 procedure TMainConsoleForm.rxNormCallback(sender : TObject; pct : integer; done : boolean; desc : String);
 begin
   prgRxNormImport.Position := pct;
@@ -3036,7 +2815,9 @@ begin
   if (FWantStop) then
     abort;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.ndcCallback(sender: TObject; pct: integer; done: boolean; desc: String);
 begin
   prgNDCImport.Position := pct;
@@ -3049,7 +2830,9 @@ begin
   if (FWantStop) then
     abort;
 end;
+*)
 
+(*
 procedure TMainConsoleForm.uniiCallback(sender: TObject; pct: integer; done: boolean; desc: String);
 begin
   prgUNIIImport.Position := pct;
@@ -3062,6 +2845,7 @@ begin
   if (FWantStop) then
     abort;
 end;
+*)
 
 procedure TMainConsoleForm.SetUpTerminologyPage;
 //var
@@ -3101,6 +2885,7 @@ begin
 //    env.free;
   end;
 
+  (*
   edtRXNFolder.text := FIni.ReadString('rxnorm-import', 'source', '');
   rbRXNMSSQL.checked := FIni.ReadString('rxnorm-import', 'type', '') = 'mssql';
   rbRXNMySQL.checked := FIni.ReadString('rxnorm-import', 'type', '') = 'mysql';
@@ -3136,13 +2921,14 @@ begin
   edtUNIIPassword.text := FIni.ReadString('unii-import', 'password', '');
   edtUNIIUsername.text := FIni.ReadString('unii-import', 'username', '');
   edtUNIISQLiteFile.text := FIni.ReadString('unii-import', 'sqllite', '');
+  *)
 
   pnlSnomedImport.Color := $D9F0F7; //rgb(217, 240, 247);
   pnlLoincImport.color := clWhite;
   pnlCombineSnomed.color := clWhite;
-  pnlProcessRXN.color := clWhite;
-  pnlProcessNDC.color := clWhite;
-  pnlProcessUNII.color := clWhite;
+  //pnlProcessRXN.color := clWhite;
+  //pnlProcessNDC.color := clWhite;
+  //pnlProcessUNII.color := clWhite;
 
   pgMain.ActivePageIndex := 0;
   lbEditionsClick(self);
