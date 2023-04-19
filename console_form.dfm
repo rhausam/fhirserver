@@ -1466,10 +1466,8 @@ object MainConsoleForm: TMainConsoleForm
                 Font.Height = -11
                 Font.Name = 'Tahoma'
                 Font.Style = []
-                ItemIndex = 0
                 ParentFont = False
                 TabOrder = 1
-                Text = 'International'
                 OnChange = cbxEditionChange
                 Items.Strings = (
                   'International'
@@ -1477,11 +1475,13 @@ object MainConsoleForm: TMainConsoleForm
                   'Australia'
                   'Belgium'
                   'Canada'
-                  'Spanish'
+                  'Spain'
                   'Denmark'
                   'Netherlands'
                   'Sweden'
+                  'Switzerland'
                   'UK'
+                  'IPS'
                   'Custom Combined')
               end
               object edtDate: TDateTimePicker
