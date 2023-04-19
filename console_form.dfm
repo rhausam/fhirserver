@@ -1481,7 +1481,7 @@ object MainConsoleForm: TMainConsoleForm
                   'Sweden'
                   'Switzerland'
                   'UK'
-                  'IPS'
+                  'IPS Terminology'
                   'Custom Combined')
               end
               object edtDate: TDateTimePicker
