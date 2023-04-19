@@ -5387,6 +5387,10 @@ begin
     result := 5
   else if (s = 'da') then
     result := 6
+  else if (s = 'de') then
+    result := 7
+  else if (s = 'it') then
+    result := 8
   else
     raise ETerminologyError.create('Unknown SCT Lang "'+s+'"');
 end;
@@ -5400,6 +5404,8 @@ begin
     4 : result := 'es';
     5 : result := 'sv';
     6 : result := 'da';
+    7 : result := 'de';
+    8 : result := 'it';
   else
     result := '??';
   end;
